@@ -1,16 +1,51 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+	LinearLayout goes linearly down the layout objects in this list.
+	The order they are placed in this file is the order they appear on the screen.
+
+	match_parent makes this viewgroup (LinearLayout) fill the full screen
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.leepresswood.geonode.LoginActivity">
+    android:orientation="vertical"
+    tools:context="com.leepresswood.geonode.activities.MainActivity"
+    tools:ignore="MergeRootFrame">
 
-    <TextView
-        android:text="@string/hello_world"
+    <!--
+        Weight works like this:
+        Each line has a default of 0.
+        Take the sum of all the weights of the line. That's the denominator.
+        Weight / Denominator shows what percentage of the line is taken up by that object.
+
+        android:layout_weight="1"
+    -->
+    <EditText android:id="@+id/textfield_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/textfield_username" />
+    <EditText android:id="@+id/textfield_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/textfield_password" />
+    <!--
+        The onclick searches for the function "sendMessage" in the activity that openedthis fragment
+        In order for the system to match this method to the method name given to android:onClick,
+        the signature must be exactly as shown. Specifically, the method must:
+        Be public
+        Have a void return value
+        Have a View as the only parameter (this will be the View that was clicked)
+    -->
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/button_submit"
+        android:onClick="sendMessage"/>
 
-</RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_enter"
+        android:onClick="sendMessageWithoutLogin"/>
+</LinearLayout>
