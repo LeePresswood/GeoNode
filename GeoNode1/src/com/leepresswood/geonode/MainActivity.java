@@ -1,4 +1,4 @@
-package com.leepresswood.geonode.activities;
+package com.leepresswood.geonode;
 
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.R.id;

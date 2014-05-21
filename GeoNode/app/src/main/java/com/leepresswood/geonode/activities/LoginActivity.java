@@ -1,10 +1,12 @@
-package com.leepresswood.geonode;
+package com.leepresswood.geonode.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.leepresswood.geonode.R;
 
 public class LoginActivity extends ActionBarActivity {
     @Override
