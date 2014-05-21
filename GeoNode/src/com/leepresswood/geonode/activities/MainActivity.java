@@ -1,4 +1,9 @@
-package com.leepresswood.geonode;
+package com.leepresswood.geonode.activities;
+
+import com.leepresswood.geonode.R;
+import com.leepresswood.geonode.R.id;
+import com.leepresswood.geonode.R.layout;
+import com.leepresswood.geonode.R.menu;
 
 import android.app.Activity;
 import android.content.Intent;
