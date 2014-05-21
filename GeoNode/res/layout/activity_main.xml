@@ -1,8 +1,40 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.leepresswood.geonode.activities.MainActivity"
-    tools:ignore="MergeRootFrame" />
-
+<!--
+	LinearLayout goes linearly down the layout objects in this list.
+	The order they are placed in this file is the order they appear on the screen.
+	
+	match_parent makes this viewgroup (LinearLayout) fill the full screen
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical" 
+	tools:context="com.leepresswood.geonode.activities.MainActivity"
+     tools:ignore="MergeRootFrame">
+    
+    <!--
+    	Weight works like this:
+    	Each line has a default of 0.
+    	Take the sum of all the weights of the line. That's the denominator.
+    	Weight / Denominator shows what percentage of the line is taken up by that object.
+    -->
+	<EditText android:id="@+id/edit_message"
+		android:layout_weight="1"
+		android:layout_width="wrap_content"
+		android:layout_height="0dip"
+		android:hint="@string/textfield_username" />	
+	<!-- 
+		The onclick searches for the function "sendMessage" in the activity that openedthis fragment
+		In order for the system to match this method to the method name given to android:onClick, 
+		the signature must be exactly as shown. Specifically, the method must:
+		Be public
+		Have a void return value
+		Have a View as the only parameter (this will be the View that was clicked)
+	-->
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/button_submit" 
+		android:onClick="sendMessage"/>
+</LinearLayout>
