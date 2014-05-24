@@ -41,11 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_submit"
-        android:onClick="sendMessage"/>
+        android:onClick="login"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/debug_enter"
-        android:onClick="sendMessageWithoutLogin"/>
+        android:onClick="loginWithoutLogin"/>
 </LinearLayout>

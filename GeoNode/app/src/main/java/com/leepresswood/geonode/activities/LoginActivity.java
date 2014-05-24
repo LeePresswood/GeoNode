@@ -36,12 +36,12 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendMessage(View view)
+    public void login(View view)
 	 {
 
     }
 
-    public void sendMessageWithoutLogin(View view)
+    public void loginWithoutLogin(View view)
 	 {
 
     }
