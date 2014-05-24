@@ -11,7 +11,7 @@
     <string name="title_activity_main">Login</string>
 
     <!--Map screen-->
-
+    <string name="button_place_node">Place Node at Current Location</string>
 
     <!--Debug strings-->
     <string name="debug_enter">Enter Without Login</string>
