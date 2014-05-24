@@ -17,7 +17,7 @@ public class Locator
 	public Location getLocation(Activity a)
 	{
 		LocationManager service = (LocationManager) a.getSystemService(Context.LOCATION_SERVICE);
-		boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		//boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
 		/*//If enabled, listen for a location
 		if(enabled)
