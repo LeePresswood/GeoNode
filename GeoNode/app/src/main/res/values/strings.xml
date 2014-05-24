@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Main-->
+
+    <!-- Main -->
     <string name="app_name">GeoNode</string>
     <string name="action_settings">Settings</string>
 
-    <!--Login-->
+    <!-- Login -->
     <string name="textfield_username">Username</string>
     <string name="textfield_password">Password</string>
     <string name="button_submit">Submit</string>
     <string name="title_activity_main">Login</string>
 
-    <!--Map screen-->
+    <!-- Map screen -->
     <string name="button_place_node">Place Node at Current Location</string>
 
-    <!--Debug strings-->
+    <!-- Debug strings -->
     <string name="debug_enter">Enter Without Login</string>
+    <string name="title_activity_map">Map</string>
+
 </resources>
