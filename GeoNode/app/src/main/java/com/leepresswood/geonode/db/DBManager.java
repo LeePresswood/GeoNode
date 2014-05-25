@@ -41,18 +41,7 @@ public class DBManager
 
 			//Connection is made. We can use the service now.
 			if(connectionFlag)
-				try
-				{
-					//We are assuming the web service correctly handles the query.
-					//This should only return true/false
-					//InputStream in = new BufferedInputStream(urlConnection);
-					//readStream(in);
-				}
-				finally
-				{//We're done with the connection, so disconnect.
-					urlConnection.disconnect();
-					return true;
-				}
+				return true;
 		}
 
 		//We shouldn't reach this point. Return false to signify failure.
@@ -62,12 +51,38 @@ public class DBManager
 	public boolean query(String q)
 	{//Pass in a query for Psql. Return success or failure.
 		//Pass query through get. Remove spaces
-		q.replace(' ', '_');
+		q = q.replace(' ', '_');
 
 		//Get the URL we're about to enter
 		String queryStringURL = URL_STRING + q;
 
+		boolean success = this.connect(queryStringURL);
+		if(success)
+			urlConnection.disconnect();
+
 		//Connect with the given service and return success or failure.
-		return this.connect(queryStringURL);
+		return success;
+	}
+
+	public String queryGetData(String q)
+	{//Pass in Psql query. Return string of data returned or null if failure.
+		q = q.replace(' ', '_');
+
+		//Get the URL we're about to enter
+		String queryStringURL = URL_STRING + q;
+
+		boolean success = this.connect(queryStringURL);
+		String response = null;
+		if(success)
+		{//Collect the response text
+			//We are assuming the web service correctly handles the query.
+			//InputStream in = new BufferedInputStream(urlConnection);
+			//readStream(in);
+
+			//Disconnect to end
+			urlConnection.disconnect();
+		}
+
+		return response;
 	}
 }
