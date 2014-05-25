@@ -52,4 +52,15 @@ public class DBManager
 				}
 		}
 	}
+
+	public boolean query(String q)
+	{//Pass in a query for Psql. Return sucess or failure.
+		//Pass query through get. Remove spaces
+		q.replace(' ', '_');
+
+		//Get the URL we're about to enter
+		String url = R.string.db_query_url + "?query=" + q;
+
+		return true;
+	}
 }
