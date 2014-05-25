@@ -44,7 +44,7 @@ public class LoginActivity extends ActionBarActivity {
 
     public void loginWithoutLogin(View view)
 	 {
-		 Intent i = new Intent();
-
+		 //Intent i = new Intent();
+		view.setX(view.getX() + 20f);
     }
 }
