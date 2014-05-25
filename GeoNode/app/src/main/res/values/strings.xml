@@ -6,16 +6,16 @@
     <string name="action_settings">Settings</string>
 
     <!-- Login -->
+    <string name="title_activity_main">Login</string>
     <string name="textfield_username">Username</string>
     <string name="textfield_password">Password</string>
     <string name="button_submit">Submit</string>
-    <string name="title_activity_main">Login</string>
 
     <!-- Map screen -->
+    <string name="title_activity_map">Map</string>
     <string name="button_place_node">Place Node at Current Location</string>
 
     <!-- Debug strings -->
     <string name="debug_enter">Enter Without Login</string>
-    <string name="title_activity_map">Map</string>
 
 </resources>
