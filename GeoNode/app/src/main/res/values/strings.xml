@@ -15,7 +15,9 @@
     <string name="title_activity_map">Map</string>
     <string name="button_place_node">Place Node at Current Location</string>
 
+    <!--Web Services-->
+    <string name="db_query_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/db.php</string>
+
     <!-- Debug strings -->
     <string name="debug_enter">Enter Without Login</string>
-
 </resources>
