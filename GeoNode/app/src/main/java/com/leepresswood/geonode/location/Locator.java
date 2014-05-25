@@ -17,27 +17,6 @@ public class Locator
 		LocationManager service = (LocationManager) a.getSystemService(Context.LOCATION_SERVICE);
 		//boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-		/*//If enabled, listen for a location
-		if(enabled)
-		{
-			// Define a listener that responds to location updates
-			LocationListener locationListener = new LocationListener() {
-				public void onLocationChanged(Location location) {
-					// Called when a new location is found by the network location provider.
-					//makeUseOfNewLocation(location);
-				}
-
-				public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-				public void onProviderEnabled(String provider) {}
-
-				public void onProviderDisabled(String provider) {}
-			};
-
-			// Register the listener with the Location Manager to receive location updates
-			service.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-		}*/
-
 		return new Location(service.getLastKnownLocation(service.getBestProvider(new Criteria(), true)));
 	}
 }
