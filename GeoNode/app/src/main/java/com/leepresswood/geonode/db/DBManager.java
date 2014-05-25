@@ -43,6 +43,8 @@ public class DBManager
 			if(connectionFlag)
 				try
 				{
+					//We are assuming the web service correctly handles the query.
+					//This should only return true/false
 					//InputStream in = new BufferedInputStream(urlConnection);
 					//readStream(in);
 				}
