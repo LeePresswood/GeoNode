@@ -1,5 +1,6 @@
 package com.leepresswood.geonode.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,6 +44,7 @@ public class LoginActivity extends ActionBarActivity {
 
     public void loginWithoutLogin(View view)
 	 {
+		 Intent i = new Intent();
 
     }
 }
