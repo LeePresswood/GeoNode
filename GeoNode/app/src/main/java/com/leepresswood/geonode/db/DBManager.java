@@ -47,7 +47,7 @@ public class DBManager
 					//readStream(in);
 				}
 				finally
-				{//We're done with the connecton, so disconnect.
+				{//We're done with the connection, so disconnect.
 					urlConnection.disconnect();
 					return true;
 				}
