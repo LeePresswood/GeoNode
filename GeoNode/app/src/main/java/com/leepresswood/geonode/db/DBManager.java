@@ -11,12 +11,12 @@ public class DBManager
 {
 	//The DBManager will connect to a hosted DB
 	private static final String URL_STRING = R.string.db_query_url + "?query=";
+	private HttpURLConnection urlConnection = null;
 
 	private boolean connect(String q)
 	{//Attempt to set a URL
 		boolean URLflag = true;
 		URL DB_URL = null;
-		HttpURLConnection urlConnection = null;
 
 		try
 		{
