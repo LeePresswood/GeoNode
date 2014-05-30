@@ -1,6 +1,14 @@
 package com.leepresswood.geonode.db;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -10,42 +18,44 @@ import java.net.URL;
 public class DBManager
 {
 	//The DBManager will connect to a hosted DB
-	private static final String URL_STRING = R.string.db_query_url + "?query=";
+	private static final String URL_STRING = R.string.db_query_url;
 	private HttpURLConnection urlConnection = null;
 
-	private boolean connect(String q)
-	{//Attempt to set a URL
-		boolean URLflag = true;
-		URL DB_URL = null;
+	private String connect(String q)
+	{//Submit the given query to a web service and return the response
+        //Replaces spaces
+        q = q.replace('_', ' ');
 
-		try
-		{
-			DB_URL = new URL(q);
-		} catch (MalformedURLException e)
-		{//Shouldn't happen
-			e.printStackTrace();
-			URLflag = false;
-		}
+	    HttpClient httpclient = new DefaultHttpClient();
+        HttpResponse response = null;
+        try {
+            response = httpclient.execute(new HttpGet(URL_STRING));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        StatusLine statusLine = response.getStatusLine();
+        if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            try {
+                response.getEntity().writeTo(out);
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-		if(URLflag)
-		{//URL set. Now make attempt to connect to web service.
-			boolean connectionFlag = true;
-			try
-			{
-				urlConnection = (HttpURLConnection) DB_URL.openConnection();
-			} catch (IOException e)
-			{//Site is down
-				e.printStackTrace();
-				connectionFlag = false;
-			}
+            return out.toString();
+            //..more logic
+        }
+        else
+        {//Closes the connection with a failure
+            try {
+                response.getEntity().getContent().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-			//Connection is made. We can use the service now.
-			if(connectionFlag)
-				return true;
-		}
-
-		//We shouldn't reach this point. Return false to signify failure.
-		return false;
+        return "NULL";
 	}
 
 	public boolean query(String q)
@@ -53,15 +63,11 @@ public class DBManager
 		//Pass query through get. Remove spaces
 		q = q.replace(' ', '_');
 
-		//Get the URL we're about to enter
-		String queryStringURL = URL_STRING + q;
+		if(connect(q).equalsIgnoreCase("NULL"))
+			return false;
 
-		boolean success = this.connect(queryStringURL);
-		if(success)
-			urlConnection.disconnect();
-
-		//Connect with the given service and return success or failure.
-		return success;
+        //Connection successful
+		return true;
 	}
 
 	public String queryGetData(String q)
