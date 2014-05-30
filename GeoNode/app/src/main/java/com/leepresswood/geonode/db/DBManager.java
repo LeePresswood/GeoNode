@@ -77,4 +77,18 @@ public class DBManager
 		  this.URL_STRING = url;
         return connect(q.replace(' ', '_'));
 	}
+
+	public static String htmlspecialchars(String s)
+	{//Convert the passed string to a form that is good for web work.
+		String newString = "";
+		for(char c : s.toCharArray())
+			switch(c)
+			{
+
+				default:
+					newString += c;
+			}
+
+		return newString;
+	}
 }

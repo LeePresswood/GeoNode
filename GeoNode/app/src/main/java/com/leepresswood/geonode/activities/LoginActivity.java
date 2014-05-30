@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.leepresswood.geonode.R;
+import com.leepresswood.geonode.db.DBManager;
+
+import org.w3c.dom.Text;
 
 public class LoginActivity extends ActionBarActivity {
     @Override
@@ -30,7 +34,7 @@ public class LoginActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings)
+        if(id == R.id.action_settings)
 		  {
             return true;
         }
@@ -39,7 +43,20 @@ public class LoginActivity extends ActionBarActivity {
 
     public void login(View view)
 	 {
+		 //Gather the username and password
+		 TextView usernameBox = (TextView) this.findViewById(R.id.textfield_username);
+		 TextView passwordBox = (TextView) this.findViewById(R.id.textfield_password);
 
+		 String username = usernameBox.getText().toString();
+		 String password = passwordBox.getText().toString();
+
+		 //Protect from SQL injection here
+		 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
+		 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
+
+		 //Query the login service
+		 DBManager dbmanager = new DBManager();
+		 dbmanager.queryGetData(url, query);
     }
 
     public void loginWithoutLogin(View view)
