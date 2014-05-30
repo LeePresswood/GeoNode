@@ -18,7 +18,7 @@ import java.net.URL;
 public class DBManager
 {
 	//The DBManager will connect to a hosted DB
-	private static final String URL_STRING = R.string.db_query_url;
+	private String URL_STRING;
 	private HttpURLConnection urlConnection = null;
 
 	private String connect(String q)
@@ -62,8 +62,9 @@ public class DBManager
         return "GeoNodeError";
 	}
 
-	public boolean query(String q)
+	public boolean query(String url, String q)
 	{//Pass in a query for Psql. Return success or failure.
+		this.URL_STRING = url;
 		if(connect(q.replace(' ', '_')).equalsIgnoreCase("GeoNodeError"))
 			return false;
 
@@ -71,8 +72,9 @@ public class DBManager
 		return true;
 	}
 
-	public String queryGetData(String q)
+	public String queryGetData(String url, String q)
 	{//Pass in Psql query. Return string of data returned
+		  this.URL_STRING = url;
         return connect(q.replace(' ', '_'));
 	}
 }
