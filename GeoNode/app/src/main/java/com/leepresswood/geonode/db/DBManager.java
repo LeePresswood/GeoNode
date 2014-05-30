@@ -95,10 +95,10 @@ public class DBManager
 					break;
 				case '"':
 					sb.append("&quot;");
-					break;*/
+					break;
 				case '\'':
 					sb.append("&apos;");
-					break;
+					break;*/
 				case ';':
 				case '=':
 				case '(':

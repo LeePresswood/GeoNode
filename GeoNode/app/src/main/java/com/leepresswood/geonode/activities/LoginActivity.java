@@ -50,12 +50,31 @@ public class LoginActivity extends ActionBarActivity {
 		 String username = usernameBox.getText().toString();
 		 String password = passwordBox.getText().toString();
 
-		 //Protect from SQL injection here
+		 //Protect from SQL injection
+		 DBManager dbmanager = new DBManager();
+		 String newUsername = dbmanager.htmlspecialchars(username);
+		 String newPassword = dbmanager.htmlspecialchars(username);
+
+		 //If anything changed, there was a bad character
+		 if(!username.equalsIgnoreCase(newUsername) || !password.equalsIgnoreCase(newPassword))
+		 {
+			 //Create a tooltip over the bad box. If both are bad, just do it over the username.
+			 if(!username.equalsIgnoreCase(newUsername))
+			 {
+				 //Tooltip create here
+
+			 }
+			 else
+			 {
+				 //Tooltip create here
+			 }
+		 }
+
+		 //Get the strings for the query
 		 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
 		 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 		 //Query the login service
-		 DBManager dbmanager = new DBManager();
 		 dbmanager.queryGetData(url, query);
     }
 
