@@ -52,23 +52,7 @@ public class LoginActivity extends ActionBarActivity {
 
 		 //Protect from SQL injection
 		 DBManager dbmanager = new DBManager();
-		 String newUsername = dbmanager.htmlspecialchars(username);
-		 String newPassword = dbmanager.htmlspecialchars(username);
-
-		 //If anything changed, there was a bad character
-		 if(!username.equalsIgnoreCase(newUsername) || !password.equalsIgnoreCase(newPassword))
-		 {
-			 //Create a tooltip over the bad box. If both are bad, just do it over the username.
-			 if(!username.equalsIgnoreCase(newUsername))
-			 {
-				 //Tooltip create here
-
-			 }
-			 else
-			 {
-				 //Tooltip create here
-			 }
-		 }
+		 boolean isSafeFromSQL = checkSqlInjection(username, password);
 
 		 //Get the strings for the query
 		 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
@@ -82,4 +66,31 @@ public class LoginActivity extends ActionBarActivity {
 	 {
 		 //Intent i = new Intent();
     }
+
+	private boolean checkSqlInjection(String username, String password)
+	{
+		String newUsername = DBManager.htmlspecialchars(username);
+		String newPassword = DBManager.htmlspecialchars(password);
+
+		//If anything changed, there was a bad character
+		if(!username.equalsIgnoreCase(newUsername) || !password.equalsIgnoreCase(newPassword))
+		{
+			//Create a tooltip over the bad box. If both are bad, just do it over the username.
+			if(!username.equalsIgnoreCase(newUsername))
+			{
+				//Tooltip create here
+
+			}
+			else
+			{
+				//Tooltip create here
+
+			}
+
+			return false;
+		}
+
+		//Otherwise, there was nothing wrong
+		return true;
+	}
 }
