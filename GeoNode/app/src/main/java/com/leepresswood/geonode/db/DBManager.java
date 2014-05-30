@@ -80,15 +80,29 @@ public class DBManager
 
 	public static String htmlspecialchars(String s)
 	{//Convert the passed string to a form that is good for web work.
-		String newString = "";
+		StringBuffer sb = new StringBuffer();
 		for(char c : s.toCharArray())
-			switch(c)
+			switch (c)
 			{
-
+				case '<':
+					sb.append("&lt;");
+					break;
+				case '>':
+					sb.append("&gt;");
+					break;
+				case '&':
+					sb.append("&amp;");
+					break;
+				case '"':
+					sb.append("&quot;");
+					break;
+				case '\'':
+					sb.append("&apos;");
+					break;
 				default:
-					newString += c;
+					sb.append(c);
 			}
 
-		return newString;
+		return sb.toString();
 	}
 }
