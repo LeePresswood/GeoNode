@@ -84,7 +84,7 @@ public class DBManager
 		for(char c : s.toCharArray())
 			switch (c)
 			{
-				case '<':
+				/*case '<':
 					sb.append("&lt;");
 					break;
 				case '>':
@@ -95,9 +95,29 @@ public class DBManager
 					break;
 				case '"':
 					sb.append("&quot;");
-					break;
+					break;*/
 				case '\'':
 					sb.append("&apos;");
+					break;
+				case ';':
+				case '=':
+				case '(':
+				case ')':
+				case '{':
+				case '}':
+				case '[':
+				case ']':
+				case '<':
+				case '>':
+				case '?':
+				case '/':
+				case '*':
+				case '%':
+				case '$':
+				case '#':
+				case '@':
+				case '!':
+				case '^':
 					break;
 				default:
 					sb.append(c);
