@@ -52,14 +52,25 @@ public class LoginActivity extends ActionBarActivity {
 
 		 //Protect from SQL injection
 		 DBManager dbmanager = new DBManager();
-		 boolean isSafeFromSQL = checkSqlInjection(username, password);
+		 if(checkSqlInjection(username, password))
+		 {//Only do the query if the username and password are safe
+			 //Get the strings for the query
+			 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
+			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
-		 //Get the strings for the query
-		 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
-		 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
+			 //Query the login service
+			 String response = dbmanager.queryGetData(url, query);
 
-		 //Query the login service
-		 dbmanager.queryGetData(url, query);
+			 //If the response is anything but 1, we have not logged in properly.
+			 if(Integer.parseInt(response) == 1)
+			 {//Logged in successfully. Go to home page for that person.
+
+			 }
+			 else
+			 {//Error
+
+			 }
+		 }
     }
 
     public void loginWithoutLogin(View view)
