@@ -33,37 +33,38 @@ public class DBManager
         } catch (IOException e) {
             e.printStackTrace();
         }
-        StatusLine statusLine = response.getStatusLine();
-        if(statusLine.getStatusCode() == HttpStatus.SC_OK){
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            try {
-                response.getEntity().writeTo(out);
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(response != null)
+        {
+            StatusLine statusLine = response.getStatusLine();
 
-            return out.toString();
-            //..more logic
-        }
-        else
-        {//Closes the connection with a failure
-            try {
-                response.getEntity().getContent().close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(statusLine.getStatusCode() == HttpStatus.SC_OK)
+            {
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                try {
+                    response.getEntity().writeTo(out);
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return out.toString();
+            }
+            else
+            {//Closes the connection with a failure
+                try {
+                    response.getEntity().getContent().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        return "NULL";
+        return "GeoNodeError";
 	}
 
 	public boolean query(String q)
 	{//Pass in a query for Psql. Return success or failure.
-		//Pass query through get. Remove spaces
-		q = q.replace(' ', '_');
-
-		if(connect(q).equalsIgnoreCase("NULL"))
+		if(connect(q.replace(' ', '_')).equalsIgnoreCase("GeoNodeError"))
 			return false;
 
         //Connection successful
@@ -71,24 +72,7 @@ public class DBManager
 	}
 
 	public String queryGetData(String q)
-	{//Pass in Psql query. Return string of data returned or null if failure.
-		q = q.replace(' ', '_');
-
-		//Get the URL we're about to enter
-		String queryStringURL = URL_STRING + q;
-
-		boolean success = this.connect(queryStringURL);
-		String response = null;
-		if(success)
-		{//Collect the response text
-			//We are assuming the web service correctly handles the query.
-			//InputStream in = new BufferedInputStream(urlConnection);
-			//readStream(in);
-
-			//Disconnect to end
-			urlConnection.disconnect();
-		}
-
-		return response;
+	{//Pass in Psql query. Return string of data returned
+        return connect(q.replace(' ', '_'));
 	}
 }
