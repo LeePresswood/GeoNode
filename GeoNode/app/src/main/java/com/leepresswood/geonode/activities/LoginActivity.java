@@ -64,11 +64,11 @@ public class LoginActivity extends ActionBarActivity {
 			 //If the response is anything but 1, we have not logged in properly.
 			 if(Integer.parseInt(response) == 1)
 			 {//Logged in successfully. Go to home page for that person.
+				 Intent i = new Intent(this, MapActivity.class);
 
-			 }
-			 else
-			 {//Error
-
+				 //Pass in the username for the session
+				 i.putExtra("username", username);
+				 this.startActivity(i);
 			 }
 		 }
     }
