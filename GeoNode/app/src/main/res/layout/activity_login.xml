@@ -4,7 +4,7 @@
 
 	match_parent makes this viewgroup (LinearLayout) fill the full screen
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerLogin"
     android:layout_width="match_parent"
@@ -21,31 +21,69 @@
 
         android:layout_weight="1"
     -->
-    <EditText android:id="@+id/textfield_username"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/textfield_username" />
-    <EditText android:id="@+id/textfield_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/textfield_password" />
-    <!--
-        The onclick searches for the function "sendMessage" in the activity that openedthis fragment
-        In order for the system to match this method to the method name given to android:onClick,
-        the signature must be exactly as shown. Specifically, the method must:
-        Be public
-        Have a void return value
-        Have a View as the only parameter (this will be the View that was clicked)
-    -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_submit"
-        android:onClick="login"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:weightSum="1">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/debug_enter"
-        android:onClick="loginWithoutLogin"/>
-</LinearLayout>
+        <EditText android:id="@+id/textfield_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/textfield_username"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:id="@+id/space"/>
+
+        <EditText android:id="@+id/textfield_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/textfield_password" />
+        <!--
+            The onclick searches for the function "sendMessage" in the activity that openedthis fragment
+            In order for the system to match this method to the method name given to android:onClick,
+            the signature must be exactly as shown. Specifically, the method must:
+            Be public
+            Have a void return value
+            Have a View as the only parameter (this will be the View that was clicked)
+        -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:id="@+id/space2"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_submit"
+            android:onClick="login"
+            android:singleLine="false"
+            android:background="#ff1bc1e1"
+            android:textColor="#ffffffff"
+            android:textSize="17pt"
+            android:typeface="sans"
+            android:textStyle="bold"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:id="@+id/space3"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/debug_enter"
+            android:onClick="loginWithoutLogin"
+            android:background="#ff1bc1e1"
+            android:textSize="17pt"
+            android:textColor="#ffffffff"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</RelativeLayout>
