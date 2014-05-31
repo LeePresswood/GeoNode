@@ -100,6 +100,7 @@ public class DBManager
 					sb.append("&apos;");
 					break;*/
 				case ';':
+                case ' ':
 				case '=':
 				case '(':
 				case ')':
