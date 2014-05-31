@@ -35,6 +35,12 @@
             android:text="@string/login_instructions"
             android:id="@+id/loginInstructionsView"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:id="@+id/space0"/>
+
         <EditText android:id="@+id/textfield_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
