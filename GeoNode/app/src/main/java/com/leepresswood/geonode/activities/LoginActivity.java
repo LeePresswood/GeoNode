@@ -55,7 +55,7 @@ public class LoginActivity extends ActionBarActivity {
 		 if(checkSqlInjection(username, password))
 		 {//Only do the query if the username and password are safe
 			 //Get the strings for the query
-			 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/services/login.php";
+			 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 			 //Query the login service
