@@ -28,6 +28,13 @@
         android:gravity="center_vertical"
         android:weightSum="1">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/login_instructions"
+            android:id="@+id/loginInstructionsView"/>
+
         <EditText android:id="@+id/textfield_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,14 +52,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="@string/textfield_password" />
-        <!--
-            The onclick searches for the function "sendMessage" in the activity that openedthis fragment
-            In order for the system to match this method to the method name given to android:onClick,
-            the signature must be exactly as shown. Specifically, the method must:
-            Be public
-            Have a void return value
-            Have a View as the only parameter (this will be the View that was clicked)
-        -->
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +76,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.07"
             android:id="@+id/space3"/>
-
+        <!--
+                    The onclick searches for the function "sendMessage" in the activity that opened this fragment
+                    In order for the system to match this method to the method name given to android:onClick,
+                    the signature must be exactly as shown. Specifically, the method must:
+                    Be public
+                    Have a void return value
+                    Have a View as the only parameter (this will be the View that was clicked)
+                -->
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
