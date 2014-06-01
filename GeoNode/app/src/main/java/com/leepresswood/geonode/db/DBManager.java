@@ -74,7 +74,7 @@ public class DBManager
 
 	public String queryGetData(String url, String q)
 	{//Pass in Psql query. Return string of data returned
-		  this.URL_STRING = url;
+		this.URL_STRING = url;
         return connect(q.replace(' ', '_'));
 	}
 

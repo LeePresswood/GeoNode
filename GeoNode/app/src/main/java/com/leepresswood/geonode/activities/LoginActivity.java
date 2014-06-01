@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.leepresswood.geonode.R;
@@ -44,8 +45,8 @@ public class LoginActivity extends ActionBarActivity {
     public void login(View view)
 	 {
 		 //Gather the username and password
-		 TextView usernameBox = (TextView) this.findViewById(R.id.textfield_username);
-		 TextView passwordBox = (TextView) this.findViewById(R.id.textfield_password);
+		 TextView usernameBox = (EditText) this.findViewById(R.id.textfield_username);
+		 TextView passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 
 		 String username = usernameBox.getText().toString();
 		 String password = passwordBox.getText().toString();
@@ -76,6 +77,11 @@ public class LoginActivity extends ActionBarActivity {
     public void loginWithoutLogin(View view)
 	 {
 		 //Intent i = new Intent();
+
+         String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
+         String response = new DBManager().queryGetData(url, "hi");
+
+         ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
     }
 
 	private boolean checkSqlInjection(String username, String password)

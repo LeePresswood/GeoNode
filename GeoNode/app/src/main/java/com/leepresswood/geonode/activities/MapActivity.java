@@ -15,7 +15,7 @@ public class MapActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        //setContentView(R.layout.activity_map);
         setUpMapIfNeeded();
     }
 
@@ -44,8 +44,8 @@ public class MapActivity extends FragmentActivity {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+            //mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    //.getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
