@@ -32,8 +32,8 @@ public class DBManager
         entity.setContentType("application/json");
         httpPost.setEntity(entity);
 
-        /*HttpClient client = new DefaultHttpClient();
-        HttpResponse response = client.execute(httpPost);*/
+        HttpClient client = new DefaultHttpClient();
+        HttpResponse response = client.execute(httpPost);
 
         return "GeoNodeError";
 	}
