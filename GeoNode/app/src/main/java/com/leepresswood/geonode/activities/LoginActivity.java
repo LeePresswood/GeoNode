@@ -60,7 +60,7 @@ public class LoginActivity extends ActionBarActivity {
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 			 //Query the login service
-			 String response = dbmanager.queryGetData(url, "test");
+			 String response = dbmanager.queryGetData(url, query);
 
 			 //If the response is anything but 1, we have not logged in properly.
 			 if(Integer.parseInt(response) == 1)
