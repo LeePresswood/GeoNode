@@ -29,10 +29,10 @@ public class DBManager
         // Create the POST object and add the parameters
         HttpPost httpPost = new HttpPost(URL_STRING);
         StringEntity entity = new StringEntity(jsonObj.toString(), HTTP.UTF_8);
-        /*entity.setContentType("application/json");
+        entity.setContentType("application/json");
         httpPost.setEntity(entity);
 
-        HttpClient client = new DefaultHttpClient();
+        /*HttpClient client = new DefaultHttpClient();
         HttpResponse response = client.execute(httpPost);*/
 
         return "GeoNodeError";
