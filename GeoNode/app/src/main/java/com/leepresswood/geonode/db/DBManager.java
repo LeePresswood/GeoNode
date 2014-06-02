@@ -28,12 +28,12 @@ public class DBManager
 
 	   HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;
-        return "here";
-         /*try {
+
+         try {
             response = httpclient.execute(new HttpGet(URL_STRING));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }return "here";/*
         if(response != null)
         {
             StatusLine statusLine = response.getStatusLine();
