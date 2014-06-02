@@ -1,5 +1,6 @@
 package com.leepresswood.geonode.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.db.DBManager;
@@ -81,7 +83,13 @@ public class LoginActivity extends ActionBarActivity {
          String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
          String response = new DBManager().queryGetData(url, "hi");
 
-         ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
+         //((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
+         Context context = getApplicationContext();
+         CharSequence text = "Hello toast!";
+         int duration = Toast.LENGTH_SHORT;
+
+         Toast toast = Toast.makeText(context, text, duration);
+         toast.show();
     }
 
 	private boolean checkSqlInjection(String username, String password)
