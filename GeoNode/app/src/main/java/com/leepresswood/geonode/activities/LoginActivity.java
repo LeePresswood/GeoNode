@@ -81,7 +81,7 @@ public class LoginActivity extends ActionBarActivity {
 		 //Intent i = new Intent();
 
          String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
-         String response = new DBManager().queryGetData(url, "hi");
+         //String response = new DBManager().queryGetData(url, "hi");
 
          //((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
          Context context = getApplicationContext();
