@@ -26,9 +26,10 @@ public class DBManager
         //Replaces spaces
         q = q.replace('_', ' ');
 
-	    HttpClient httpclient = new DefaultHttpClient();
+	   HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;
-        try {
+        return "here";
+         /*try {
             response = httpclient.execute(new HttpGet(URL_STRING));
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +60,7 @@ public class DBManager
             }
         }
 
-        return "GeoNodeError";
+        return "GeoNodeError";*/
 	}
 
 	public boolean query(String url, String q)
@@ -76,6 +77,7 @@ public class DBManager
 	{//Pass in Psql query. Return string of data returned
 		this.URL_STRING = url;
         return connect(q.replace(' ', '_'));
+        //return URL_STRING;
 	}
 
 	public static String htmlspecialchars(String s)
