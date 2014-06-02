@@ -38,7 +38,7 @@ public class LoginActivity extends ActionBarActivity {
         if(id == R.id.action_settings)
 		  {
             return true;
-        }
+          }
         return super.onOptionsItemSelected(item);
     }
 
@@ -60,7 +60,7 @@ public class LoginActivity extends ActionBarActivity {
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 			 //Query the login service
-			 String response = dbmanager.queryGetData(url, query);
+			 String response = dbmanager.queryGetData(url, "test");
 
 			 //If the response is anything but 1, we have not logged in properly.
 			 if(Integer.parseInt(response) == 1)
