@@ -1,5 +1,7 @@
 package com.leepresswood.geonode.db;
 
+import android.os.AsyncTask;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -12,8 +14,37 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
-public class DBManager
-{
+public class DBManager extends AsyncTask<String, Void, String> {
+    protected String doInBackground(String... urls) {
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(URL_STRING);
+        //"http://yourserverIP/postdata.php");
+        String serverResponse = null;
+        try {
+            //List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            //nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
+            //nameValuePairs.add(new BasicNameValuePair("datakey2",
+            //dataValue2));
+
+            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpclient.execute(httppost);
+
+            serverResponse = response.getStatusLine().toString();
+            //Log.e("response", serverResponse);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "GeoNodeError";
+    }
+
+    protected void onProgressUpdate(Integer... progress) {
+    }
+
+    protected void onPostExecute(Long result) {
+    }
+
 	//The DBManager will connect to a hosted DB
 	private String URL_STRING;
 	private HttpURLConnection urlConnection = null;
@@ -31,32 +62,11 @@ public class DBManager
         HttpPost httpPost = new HttpPost(URL_STRING);
         StringEntity entity = new StringEntity(jsonObj.toString(), HTTP.UTF_8);
         entity.setContentType("application/json");
-        httpPost.setEntity(entity);
+        httpPost.setEntity(entity);*/
 
-        HttpClient client = new DefaultHttpClient();
-        HttpResponse response = client.execute(httpPost);*/
+        return this.doInBackground(URL_STRING);
 
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(URL_STRING);
-                //"http://yourserverIP/postdata.php");
-        String serverResponse = null;
-        try {
-            //List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            //nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
-            //nameValuePairs.add(new BasicNameValuePair("datakey2",
-                    //dataValue2));
-
-            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            HttpResponse response = httpclient.execute(httppost);
-
-            serverResponse = response.getStatusLine().toString();
-            //Log.e("response", serverResponse);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        return "GeoNodeError";
+        //return "GeoNodeError";
 	}
 
 	public boolean query(String url, String q)
