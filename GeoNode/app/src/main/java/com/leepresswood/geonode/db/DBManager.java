@@ -1,6 +1,7 @@
 package com.leepresswood.geonode.db;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -22,7 +23,7 @@ public class DBManager
         q = q.replace('_', ' ');
 
         // Build the JSON object to pass parameters
-        JSONObject jsonObj = new JSONObject();
+        /*JSONObject jsonObj = new JSONObject();
         //jsonObj.put("username", username);
         //jsonObj.put("data", dataValue);
 
@@ -33,7 +34,27 @@ public class DBManager
         httpPost.setEntity(entity);
 
         HttpClient client = new DefaultHttpClient();
-        HttpResponse response = client.execute(httpPost);
+        HttpResponse response = client.execute(httpPost);*/
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(URL_STRING);
+                //"http://yourserverIP/postdata.php");
+        String serverResponse = null;
+        try {
+            //List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            //nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
+            //nameValuePairs.add(new BasicNameValuePair("datakey2",
+                    //dataValue2));
+
+            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpclient.execute(httppost);
+
+            serverResponse = response.getStatusLine().toString();
+            //Log.e("response", serverResponse);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
 
         return "GeoNodeError";
 	}
