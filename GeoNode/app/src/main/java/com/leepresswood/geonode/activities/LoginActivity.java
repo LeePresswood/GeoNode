@@ -16,6 +16,8 @@ import com.leepresswood.geonode.db.DBManager;
 
 import org.w3c.dom.Text;
 
+import java.util.concurrent.ExecutionException;
+
 public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,16 @@ public class LoginActivity extends ActionBarActivity {
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 			 //Query the login service
-			 String response = dbmanager.doInBackground(url, query);
+             String response = null;
+             try {
+                 response = dbmanager.execute(url, query).get();
+             } catch (InterruptedException e) {
+                 e.printStackTrace();
+             } catch (ExecutionException e) {
+                 e.printStackTrace();
+             }
 
-			 //If the response is anything but 1, we have not logged in properly.
+             //If the response is anything but 1, we have not logged in properly.
 			 if(Integer.parseInt(response) == 1)
 			 {//Logged in successfully. Go to home page for that person.
 				 Intent i = new Intent(this, MapActivity.class);

@@ -43,9 +43,11 @@ public class DBManager extends AsyncTask<String, Void, String> {
         return "GeoNodeError";
     }
 
+    // This is called each time you call publishProgress()
     protected void onProgressUpdate(Integer... progress) {
     }
 
+    // This is called when doInBackground() is finished
     protected void onPostExecute(Long result) {
     }
 
