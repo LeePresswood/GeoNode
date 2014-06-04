@@ -15,7 +15,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 public class DBManager extends AsyncTask<String, Void, String> {
-    protected String doInBackground(String... urls) {
+    public String doInBackground(String... strings)
+    {
+        //Passed strings:
+            //0: URL
+            //1: Query
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(URL_STRING);
         //"http://yourserverIP/postdata.php");

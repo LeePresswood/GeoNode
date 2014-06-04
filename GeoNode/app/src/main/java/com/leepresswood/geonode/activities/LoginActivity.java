@@ -62,7 +62,7 @@ public class LoginActivity extends ActionBarActivity {
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
 			 //Query the login service
-			 String response = dbmanager.queryGetData(url, query);
+			 String response = dbmanager.doInBackground(url, query);
 
 			 //If the response is anything but 1, we have not logged in properly.
 			 if(Integer.parseInt(response) == 1)
@@ -82,7 +82,7 @@ public class LoginActivity extends ActionBarActivity {
 
          String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
          String response = new DBManager().queryGetData(url, "SELECT COUNT(*) FROM GeoNode.login WHERE username =");
-         //String response = "Hello";
+
          ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
          Context context = getApplicationContext();
          CharSequence text = "Hello toast!";
