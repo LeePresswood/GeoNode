@@ -2,6 +2,8 @@ package com.leepresswood.geonode.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +25,27 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //Determine if we're connected
+        if(isConnected())
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    public boolean isConnected()
+    {
+        //Determine if connection is available and being used
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(ActionBarActivity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected())
+            return true;
+        else
+            return false;
     }
 
     @Override
