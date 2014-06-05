@@ -14,63 +14,31 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
-public class DBManager extends AsyncTask<String, Void, String> {
-    protected String doInBackground(String... strings)
-    {
-        //Passed strings:
-            //0: URL
-            //1: Query
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(strings[0]);
-        //"http://yourserverIP/postdata.php");
-        String serverResponse = null;
-        try {
-            //List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            //nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
-            //nameValuePairs.add(new BasicNameValuePair("datakey2",
-            //dataValue2));
-
-            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            HttpResponse response = httpclient.execute(httppost);
-
-            serverResponse = response.getStatusLine().toString();
-            //Log.e("response", serverResponse);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "GeoNodeError";
-    }
-
-    // This is called each time you call publishProgress()
-    protected void onProgressUpdate(Integer... progress) {
-    }
-
-    // This is called when doInBackground() is finished
-    protected void onPostExecute(Long result) {
-    }
-
-	//The DBManager will connect to a hosted DB
+public class DBManager
+{
+    //The DBManager will connect to a hosted DB
 	private String URL_STRING;
+    private String querystring;
+    private String response;
 	private HttpURLConnection urlConnection = null;
 
-	private String connect(String q) throws IOException {//Submit the given query to a web service and return the response
-        //Replaces spaces
-        q = q.replace('_', ' ');
-
+    private String connect() throws IOException
+    {//Submit the given query to a web service and return the response
         // Build the JSON object to pass parameters
         /*JSONObject jsonObj = new JSONObject();
         //jsonObj.put("username", username);
         //jsonObj.put("data", dataValue);
 
-        // Create the POST object and add the parameters
+        //Create the POST object and add the parameters
         HttpPost httpPost = new HttpPost(URL_STRING);
         StringEntity entity = new StringEntity(jsonObj.toString(), HTTP.UTF_8);
         entity.setContentType("application/json");
         httpPost.setEntity(entity);*/
 
-        return this.doInBackground(URL_STRING);
+        //Create the async task
+        DBAsynch dba = new DBAsynch();
+        dba.execute(URL_STRING, querystring);
+        return response;
 
         //return "GeoNodeError";
 	}
@@ -78,8 +46,9 @@ public class DBManager extends AsyncTask<String, Void, String> {
 	public boolean query(String url, String q)
     {//Pass in a query for Psql. Return success or failure.
 		this.URL_STRING = url;
+        this.querystring = q;
         try {
-            if(connect(q.replace(' ', '_')).equalsIgnoreCase("GeoNodeError"))
+            if(connect().equalsIgnoreCase("GeoNodeError"))
                 return false;
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,8 +62,9 @@ public class DBManager extends AsyncTask<String, Void, String> {
 	public String queryGetData(String url, String q)
     {//Pass in Psql query. Return string of data returned
 		this.URL_STRING = url;
+        this.querystring = q;
         try {
-            return connect(q.replace(' ', '_'));
+            return connect();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,4 +120,46 @@ public class DBManager extends AsyncTask<String, Void, String> {
 
 		return sb.toString();
 	}
+
+    private class DBAsynch extends AsyncTask<String, Void, String>
+    {
+        protected String doInBackground(String... strings)
+        {
+            //Passed strings:
+            //0: URL
+            //1: Query
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(strings[0]);
+            //"http://yourserverIP/postdata.php");
+            //String serverResponse = null;
+            try {
+                //List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                //nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
+                //nameValuePairs.add(new BasicNameValuePair("datakey2",
+                //dataValue2));
+
+                //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse response = httpclient.execute(httppost);
+
+                //Return the server response
+                return response.getStatusLine().toString();
+                //Log.e("response", serverResponse);
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "GeoNodeError";
+        }
+
+        // This is called each time you call publishProgress()
+        protected void onProgressUpdate(Integer... progress) {
+        }
+
+        // This is called when doInBackground() is finished
+        protected void onPostExecute(String result)
+        {
+            response = result;
+        }
+    }
 }

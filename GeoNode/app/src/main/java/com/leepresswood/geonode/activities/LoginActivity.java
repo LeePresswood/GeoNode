@@ -63,16 +63,6 @@ public class LoginActivity extends ActionBarActivity {
 			 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
-			 //Query the login service
-             String response = null;
-             try {
-                 dbmanager.execute(url, query).get();
-             } catch (InterruptedException e) {
-                 e.printStackTrace();
-             } catch (ExecutionException e) {
-                 e.printStackTrace();
-             }
-
              //If the response is anything but 1, we have not logged in properly.
 			 /*if(Integer.parseInt(response) == 1)
 			 {//Logged in successfully. Go to home page for that person.
@@ -90,14 +80,15 @@ public class LoginActivity extends ActionBarActivity {
 		 //Intent i = new Intent();
 
          String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
-         String response = new DBManager().queryGetData(url, "SELECT COUNT(*) FROM GeoNode.login WHERE username =");
+         String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = 123";
+         String response = new DBManager().queryGetData(url, query);
 
-         ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
+         //((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
          Context context = getApplicationContext();
-         CharSequence text = "Hello toast!";
+         //CharSequence text = "Hello toast!";
          int duration = Toast.LENGTH_SHORT;
 
-         Toast toast = Toast.makeText(context, text, duration);
+         Toast toast = Toast.makeText(context, response, duration);
          toast.show();
     }
 
