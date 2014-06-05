@@ -60,7 +60,8 @@ public class LoginActivity extends ActionBarActivity {
 		 if(checkSqlInjection(username, password))
 		 {//Only do the query if the username and password are safe
 			 //Get the strings for the query
-			 String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
+			 //String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
+             String url = "http://www.reddit.com/r/HistoryPorn/comments/27b0x2/25_years_ago_today_i_shot_this_historic_image_of/";
 			 String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 
              //If the response is anything but 1, we have not logged in properly.
@@ -83,12 +84,12 @@ public class LoginActivity extends ActionBarActivity {
          String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = 123";
          String response = new DBManager().queryGetData(url, query);
 
-         //((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
          Context context = getApplicationContext();
          //CharSequence text = "Hello toast!";
          int duration = Toast.LENGTH_SHORT;
 
          Toast toast = Toast.makeText(context, response, duration);
+         ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
          toast.show();
     }
 

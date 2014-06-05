@@ -38,7 +38,7 @@ public class DBManager
         //Create the async task
         DBAsynch dba = new DBAsynch();
         dba.execute(URL_STRING, querystring);
-        return response;
+        return response + "324234234";
 
         //return "GeoNodeError";
 	}
@@ -142,7 +142,7 @@ public class DBManager
                 HttpResponse response = httpclient.execute(httppost);
 
                 //Return the server response
-                return response.getStatusLine().toString();
+                return "Code: " + response.getStatusLine() + " Values: " + response.getStatusLine().toString();
                 //Log.e("response", serverResponse);
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -159,7 +159,7 @@ public class DBManager
         // This is called when doInBackground() is finished
         protected void onPostExecute(String result)
         {
-            response = result;
+            response = result + "hi";
         }
     }
 }
