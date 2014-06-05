@@ -66,7 +66,7 @@ public class LoginActivity extends ActionBarActivity {
 			 //Query the login service
              String response = null;
              try {
-                 response = dbmanager.execute(url, query).get();
+                 dbmanager.execute(url, query).get();
              } catch (InterruptedException e) {
                  e.printStackTrace();
              } catch (ExecutionException e) {
@@ -74,14 +74,14 @@ public class LoginActivity extends ActionBarActivity {
              }
 
              //If the response is anything but 1, we have not logged in properly.
-			 if(Integer.parseInt(response) == 1)
+			 /*if(Integer.parseInt(response) == 1)
 			 {//Logged in successfully. Go to home page for that person.
 				 Intent i = new Intent(this, MapActivity.class);
 
 				 //Pass in the username for the session
 				 i.putExtra("username", username);
 				 this.startActivity(i);
-			 }
+			 }*/
 		 }
     }
 
