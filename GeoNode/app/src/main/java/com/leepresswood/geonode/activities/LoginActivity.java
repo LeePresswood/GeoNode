@@ -27,14 +27,14 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
 
         //Determine if we're connected
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast;
         if(isConnected())
-        {
-
-        }
+            toast = Toast.makeText(context, "You are connected.", duration);
         else
-        {
-
-        }
+            toast = Toast.makeText(context, "You are not connected.", duration);
+        toast.show();
     }
 
     public boolean isConnected()
@@ -111,9 +111,9 @@ public class LoginActivity extends ActionBarActivity {
          //CharSequence text = "Hello toast!";
          int duration = Toast.LENGTH_SHORT;
 
-         Toast toast = Toast.makeText(context, response, duration);
+         /*Toast toast = Toast.makeText(context, response, duration);
          ((EditText) findViewById(R.id.textfield_username)).setText((CharSequence) response);
-         toast.show();
+         toast.show();*/
     }
 
 	private boolean checkSqlInjection(String username, String password)
