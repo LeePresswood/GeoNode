@@ -27,7 +27,7 @@ public class LoginActivity extends ActionBarActivity
 
 		//Determine if we're connected
 		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
+		int duration = Toast.LENGTH_LONG;
 		Toast toast;
 		if(dbm.isConnected(this))
 			toast = Toast.makeText(context, "You are connected.", duration);
@@ -108,7 +108,7 @@ public class LoginActivity extends ActionBarActivity
 		//Bad character case
 		if(newUsername.isEmpty() || newPassword.isEmpty())
 		{//Display toast and empty boxes
-			Toast.makeText(this.getApplicationContext(), "Error: Improper character found.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this.getApplicationContext(), "Error: Improper character found.", Toast.LENGTH_LONG).show();
 			username.setText("");
 			password.setText("");
 			return false;

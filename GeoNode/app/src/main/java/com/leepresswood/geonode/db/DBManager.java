@@ -115,13 +115,13 @@ public class DBManager
 		protected void onPostExecute(String result)
 		{//If the responseHolder is not null, store the response in it.
 			if(responseFlag)
-				Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 		}
 
-		private String downloadUrl(String myurl) throws IOException
+		private String downloadUrl(String url) throws IOException
 		{
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(myurl);
+			HttpPost httppost = new HttpPost(url);
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
 			nameValuePairs.add(new BasicNameValuePair("query", queryString));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
