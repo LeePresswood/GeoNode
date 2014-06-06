@@ -88,16 +88,17 @@ public class LoginActivity extends ActionBarActivity
 		//DB connection info
 		String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
 		String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = 123";
-		dbm.query(url, query);
-
-		String response = "";
-		//Display the response
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-		Toast.makeText(context, response, duration).show();
+		dbm.query(url, query, this.makeServerResponseStorage());
 
 		//Move to the next screen
 		//Intent i = new Intent();
+	}
+
+	private Toast makeServerResponseStorage()
+	{//Create a debug toast to store the server response
+		Toast toast = new Toast(this.getApplicationContext());
+		toast.setDuration(Toast.LENGTH_SHORT);
+		return toast;
 	}
 
 	private boolean checkSqlInjection(String username, String password)
