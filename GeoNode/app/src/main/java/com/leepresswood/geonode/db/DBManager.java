@@ -1,45 +1,52 @@
 package com.leepresswood.geonode.db;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager
 {//The DBManager will connect to a hosted DB and submit a query
 	private String urlString;
 	private String queryString;
-	private Toast responseHolder = null;
+	private boolean responseFlag = false;
+	private Context context;
 
-	private void connect()
-	{//Submit the given query to a web service and return the response
-		//Create the async task and execute
-		new DBAsync().execute(urlString, queryString);
+	public DBManager(Context applicationContext)
+	{
+		this.context = applicationContext;
 	}
 
-	public void query(String url, String query)
+	public void query(String url, String query, boolean response)
 	{//Pass in a query for PSQL. Return success or failure.
 		this.urlString = url;
 		this.queryString = query;
-		this.responseHolder = null;
-		connect();
-	}
-
-	public void query(String url, String query, Toast toast)
-	{//Overloaded query method to store the response in the given toast
-		this.urlString = url;
-		this.queryString = query;
-		this.responseHolder = toast;
-		connect();
+		this.responseFlag = response;
+		new DBAsync().execute();
 	}
 
 	public static String htmlSpecialChars(String s)
@@ -84,51 +91,17 @@ public class DBManager
 		return networkInfo != null && networkInfo.isConnected();
 	}
 
-    private class DBAsync extends AsyncTask<String, Void, String>
+	private class DBAsync extends AsyncTask<String, Void, String>
 	{
 		protected String doInBackground(String... strings)
-		{//Passed strings: 0: URL, 1: Query
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(strings[0]);
+		{//Passed strings: 0: URL
 			try
 			{
-				//Pass method 1:
-				//List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-				//nameValuePairs.add(new BasicNameValuePair("datakey1", dataValue1));
-				//nameValuePairs.add(new BasicNameValuePair("datakey2", dataValue2));
-
-				//Pass method 2:
-				/*
-					//Build JSON object to pass variables
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.accumulate("name", person.getName());
-					jsonObject.accumulate("country", person.getCountry());
-					jsonObject.accumulate("twitter", person.getTwitter());
-
-					//Convert JSONObject to String
-					String json = jsonObject.toString();
-					//Pass
-					httppost.setEntity(new UrlEncodedFormEntity(json));
-
-					//Set headers to inform server about the type of the content
-					httpPost.setHeader("Accept", "application/json");
-					httpPost.setHeader("Content-type", "application/json");
-				*/
-
-				//Execute POST and receive response
-				HttpResponse httpResponse = httpclient.execute(httppost);
-				InputStream inputStream = httpResponse.getEntity().getContent();
-
-				//Determine if the response was null
-				if(inputStream != null)
-					//Return the server response
-					return inputStream.toString();
-				else
-					return "Error: Null response from web service.";
-			} catch (Exception e)
+				return downloadUrl(urlString);
+			} catch (IOException e)
 			{
 				e.printStackTrace();
-				return "GeoNodeError";
+				return "Error: Connection to database could not be made.";
 			}
 		}
 
@@ -141,11 +114,25 @@ public class DBManager
 		//This is called when doInBackground() is finished
 		protected void onPostExecute(String result)
 		{//If the responseHolder is not null, store the response in it.
-			if(responseHolder != null)
-			{
-				responseHolder.setText(result);
-				responseHolder.show();
-			}
+			if(responseFlag)
+				Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+		}
+
+		private String downloadUrl(String myurl) throws IOException
+		{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(myurl);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+			nameValuePairs.add(new BasicNameValuePair("query", queryString));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			// Execute HTTP Post Request
+			HttpResponse response = httpclient.execute(httppost);
+
+			//Get response and return it
+			String ret = EntityUtils.toString(response.getEntity());
+			Log.v("Util response", ret);
+			return ret;
 		}
 	}
 }

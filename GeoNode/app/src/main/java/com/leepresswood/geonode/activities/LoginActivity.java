@@ -17,12 +17,13 @@ import com.leepresswood.geonode.db.DBManager;
 
 public class LoginActivity extends ActionBarActivity
 {
-	DBManager dbm = new DBManager();
+	DBManager dbm;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		dbm = new DBManager(this.getApplicationContext());
 
 		//Determine if we're connected
 		Context context = getApplicationContext();
@@ -64,13 +65,12 @@ public class LoginActivity extends ActionBarActivity
 		String password = passwordBox.getText().toString();
 
 		//Protect from SQL injection
-		DBManager dbmanager = new DBManager();
 		if(checkSqlInjection(usernameBox, passwordBox))
 		{//Only do the query if the username and password are safe
 			//Get the strings for the query
 			String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
 			String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
-			dbm.query(url, query, this.makeServerResponseStorage());
+			dbm.query(url, query, true);
 			
 			//If the response is anything but 1, we have not logged in properly.
 			/*if(Integer.parseInt(response) == 1)
@@ -83,7 +83,7 @@ public class LoginActivity extends ActionBarActivity
 			}
 			else
 			{//Improper login. Wipe password box and ask again
-				Toast t = this.makeServerResponseStorage("Error: Improper username or password.").show();
+				Toast.makeText(this.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
 				passwordBox.setText("");
 			}*/
 		}
@@ -94,25 +94,10 @@ public class LoginActivity extends ActionBarActivity
 		//DB connection info
 		String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
 		String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = 123";
-		dbm.query(url, query, this.makeServerResponseStorage());
+		dbm.query(url, query, true);
 
 		//Move to the next screen
 		//Intent i = new Intent();
-	}
-
-	private Toast makeServerResponseStorage()
-	{//Create a debug toast to store the server response.
-		Toast toast = new Toast(this.getApplicationContext());
-		toast.setDuration(Toast.LENGTH_SHORT);
-		return toast;
-	}
-
-	private Toast makeServerResponseStorage(String text)
-	{//Create a debug toast to store the server response. Sets text.
-		Toast toast = new Toast(this.getApplicationContext());
-		toast.setDuration(Toast.LENGTH_SHORT);
-		toast.setText(text);
-		return toast;
 	}
 
 	private boolean checkSqlInjection(TextView username, TextView password)
@@ -123,7 +108,7 @@ public class LoginActivity extends ActionBarActivity
 		//Bad character case
 		if(newUsername.isEmpty() || newPassword.isEmpty())
 		{//Display toast and empty boxes
-			this.makeServerResponseStorage("Error: Improper character found.").show();
+			Toast.makeText(this.getApplicationContext(), "Error: Improper character found.", Toast.LENGTH_SHORT).show();
 			username.setText("");
 			password.setText("");
 			return false;
