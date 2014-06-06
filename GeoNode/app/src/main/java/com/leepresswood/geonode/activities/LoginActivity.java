@@ -74,11 +74,16 @@ public class LoginActivity extends ActionBarActivity
 			//If the response is anything but 1, we have not logged in properly.
 			/*if(Integer.parseInt(response) == 1)
 			{//Logged in successfully. Go to home page for that person.
-			Intent i = new Intent(this, MapActivity.class);
+				Intent i = new Intent(this, MapActivity.class);
 
-			//Pass in the username for the session
-			i.putExtra("username", username);
-			this.startActivity(i);
+				//Pass in the username for the session
+				i.putExtra("username", username);
+				this.startActivity(i);
+			}
+			else
+			{//Improper login. Wipe password box and ask again
+				Toast t = this.makeServerResponseStorage("Error: Improper username or password.").show();
+				passwordBox.setText("");
 			}*/
 		}
 	}
@@ -95,9 +100,17 @@ public class LoginActivity extends ActionBarActivity
 	}
 
 	private Toast makeServerResponseStorage()
-	{//Create a debug toast to store the server response
+	{//Create a debug toast to store the server response.
 		Toast toast = new Toast(this.getApplicationContext());
 		toast.setDuration(Toast.LENGTH_SHORT);
+		return toast;
+	}
+
+	private Toast makeServerResponseStorage(String text)
+	{//Create a debug toast to store the server response. Sets text.
+		Toast toast = new Toast(this.getApplicationContext());
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setText(text);
 		return toast;
 	}
 
@@ -109,10 +122,7 @@ public class LoginActivity extends ActionBarActivity
 		//Bad character case
 		if(newUsername.isEmpty() || newPassword.isEmpty())
 		{//Display toast and empty boxes
-			Toast t = this.makeServerResponseStorage();
-			t.setText("Error: Improper character found.");
-			t.show();
-
+			this.makeServerResponseStorage("Error: Improper character found.").show();
 			username.setText("");
 			password.setText("");
 			return false;
