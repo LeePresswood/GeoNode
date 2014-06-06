@@ -65,7 +65,7 @@ public class LoginActivity extends ActionBarActivity
 
 		//Protect from SQL injection
 		DBManager dbmanager = new DBManager();
-		if(checkSqlInjection(username, password))
+		if(checkSqlInjection(usernameBox, passwordBox))
 		{//Only do the query if the username and password are safe
 			//Get the strings for the query
 			String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
@@ -101,27 +101,24 @@ public class LoginActivity extends ActionBarActivity
 		return toast;
 	}
 
-	private boolean checkSqlInjection(String username, String password)
-	{
-		String newUsername = DBManager.htmlSpecialChars(username);
-		String newPassword = DBManager.htmlSpecialChars(password);
+	private boolean checkSqlInjection(TextView username, TextView password)
+	{//Check for SQL injection before code is sent to service.
+		String newUsername = DBManager.htmlSpecialChars(username.getText().toString());
+		String newPassword = DBManager.htmlSpecialChars(password.getText().toString());
 
-		//If anything changed, there was a bad character
-		if(newUsername.isEmpty() ||newPassword.isEmpty())
-		{//Create a tooltip over the bad box. If both are bad, just do it over the username.
-			if(newUsername.isEmpty())
-			{//Tooltip create here for username
+		//Bad character case
+		if(newUsername.isEmpty() || newPassword.isEmpty())
+		{//Display toast and empty boxes
+			Toast t = this.makeServerResponseStorage();
+			t.setText("Error: Improper character found.");
+			t.show();
 
-			}
-			else
-			{//Tooltip create here for password
-
-			}
-
+			username.setText("");
+			password.setText("");
 			return false;
 		}
 
-		//Otherwise, there was nothing wrong
+		//Otherwise, there was nothing wrong.
 		return true;
 	}
 }
