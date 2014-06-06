@@ -70,7 +70,8 @@ public class LoginActivity extends ActionBarActivity
 			//Get the strings for the query
 			String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
 			String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
-
+			dbm.query(url, query, this.makeServerResponseStorage());
+			
 			//If the response is anything but 1, we have not logged in properly.
 			/*if(Integer.parseInt(response) == 1)
 			{//Logged in successfully. Go to home page for that person.

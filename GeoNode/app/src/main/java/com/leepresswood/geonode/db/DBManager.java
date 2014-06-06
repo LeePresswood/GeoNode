@@ -90,8 +90,6 @@ public class DBManager
 		{//Passed strings: 0: URL, 1: Query
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(strings[0]);
-
-			//String serverResponse = null;
 			try
 			{
 				//Pass method 1:
