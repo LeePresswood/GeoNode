@@ -68,7 +68,7 @@ public class LoginActivity extends ActionBarActivity
 		if(checkSqlInjection(usernameBox, passwordBox))
 		{//Only do the query if the username and password are safe
 			//Get the strings for the query
-			String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php";
+			String url = this.getString(R.string.db_query_url);
 			String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 			dbm.query(url, query, true);
 			
@@ -92,8 +92,8 @@ public class LoginActivity extends ActionBarActivity
 	public void loginWithoutLogin(View view)
 	{//Debug method to be removed before final production.
 		//DB connection info
-		String url = "http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php";
-		String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = 123";
+		String url = this.getString(R.string.db_query_url);
+		String query = this.getString(R.string.query_login);
 		dbm.query(url, query, true);
 
 		//Move to the next screen

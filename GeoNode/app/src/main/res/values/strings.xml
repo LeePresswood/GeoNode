@@ -19,6 +19,9 @@
     <!--Web Services-->
     <string name="db_query_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/db.php</string>
 
+    <!--Database Queries-->
+    <string name="query_login">"SELECT COUNT(*) FROM GeoNode.login WHERE username = 123"</string>
+
     <!-- Debug strings -->
     <string name="debug_enter">Enter Without Login</string>
 </resources>
