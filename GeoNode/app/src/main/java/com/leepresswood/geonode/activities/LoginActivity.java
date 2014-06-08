@@ -1,8 +1,6 @@
 package com.leepresswood.geonode.activities;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -68,7 +66,7 @@ public class LoginActivity extends ActionBarActivity
 		if(checkSqlInjection(usernameBox, passwordBox))
 		{//Only do the query if the username and password are safe
 			//Get the strings for the query
-			String url = this.getString(R.string.db_query_url);
+			String url = this.getString(R.string.db_login_url);
 			String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
 			dbm.query(url, query, true);
 			
@@ -92,7 +90,7 @@ public class LoginActivity extends ActionBarActivity
 	public void loginWithoutLogin(View view)
 	{//Debug method to be removed before final production.
 		//DB connection info
-		String url = this.getString(R.string.db_query_url);
+		String url = this.getString(R.string.db_login_url);
 		String query = this.getString(R.string.query_login);
 		dbm.query(url, query, true);
 
