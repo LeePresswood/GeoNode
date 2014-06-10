@@ -2,17 +2,17 @@ package com.leepresswood.geonode.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leepresswood.geonode.R;
-import com.leepresswood.geonode.db.*;
+import com.leepresswood.geonode.db.ChangeListener;
+import com.leepresswood.geonode.db.DBManager;
 
 public class LoginActivity extends ActionBarActivity
 {
@@ -52,7 +52,7 @@ public class LoginActivity extends ActionBarActivity
 				}
 				else
 					//Improper login. Ask again
-					Toast.makeText(getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(loginHolder.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
 			}
 		};
 
@@ -73,16 +73,14 @@ public class LoginActivity extends ActionBarActivity
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if(id == R.id.action_settings)
-			return true;
-		return super.onOptionsItemSelected(item);
+		return id == R.id.action_settings || super.onOptionsItemSelected(item);
 	}
 
 	public void login(View view)
 	{//Connect to DB and attempt to login with given characteristics
 		//Gather the username and password
-		TextView usernameBox = (EditText) this.findViewById(R.id.textfield_username);
-		TextView passwordBox = (EditText) this.findViewById(R.id.textfield_password);
+		EditText usernameBox = (EditText) this.findViewById(R.id.textfield_username);
+		EditText passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 
 		String username = usernameBox.getText().toString();
 		String password = passwordBox.getText().toString();
