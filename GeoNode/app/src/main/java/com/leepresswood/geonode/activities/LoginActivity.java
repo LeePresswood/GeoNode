@@ -51,7 +51,7 @@ public class LoginActivity extends ActionBarActivity
 					startActivity(i);
 				}
 				else
-					//Improper login. Wipe password box and ask again
+					//Improper login. Ask again
 					Toast.makeText(getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
 			}
 		};
