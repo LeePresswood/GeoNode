@@ -68,7 +68,7 @@ public class LoginActivity extends ActionBarActivity
 		dbm.connect(url, true);
 
 		//Wait until we have a response
-		while(dbm.responseString == null){}
+		//while(dbm.responseString == null){}
 
 		//If the response is anything but 1, we have not logged in properly.
 		if(Integer.parseInt(dbm.responseString) == 1)
