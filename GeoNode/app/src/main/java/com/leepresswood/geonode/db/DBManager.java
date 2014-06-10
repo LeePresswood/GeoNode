@@ -29,9 +29,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBManager
+public class DBManager implements BooleanChangeDispatcher
 {//The DBManager will connect to a hosted DB and submit a query
-	public String responseString = null;
+	public String resultString;
+
 	private boolean responseFlag = false;
 	private Context context;
 	private String[] keys;
@@ -101,7 +102,7 @@ public class DBManager
 			if(responseFlag)
 				Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
-			responseString = result;
+			resultString = result;
 		}
 
 		private String downloadUrl(String url) throws IOException

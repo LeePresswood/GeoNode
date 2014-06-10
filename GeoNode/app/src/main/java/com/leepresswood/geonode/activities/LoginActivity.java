@@ -12,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leepresswood.geonode.R;
-import com.leepresswood.geonode.db.DBManager;
+import com.leepresswood.geonode.db.*;
 
 public class LoginActivity extends ActionBarActivity
 {
-	DBManager dbm;
+	private DBManager dbm;
+	private String username;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -33,6 +35,31 @@ public class LoginActivity extends ActionBarActivity
 		else
 			toast = Toast.makeText(context, "You are not connected.", duration);
 		toast.show();
+
+		final LoginActivity loginHolder = this;
+
+		//This listener fires when the result is ready
+		BooleanChangeListener listener = new BooleanChangeListener()
+		{
+			@Override
+			public void stateChanged(BooleanChangeEvent event)
+			{
+				//If the response is anything but 1, we have not logged in properly.
+				if(Integer.parseInt(dbm.resultString) == 1)
+				{//Logged in successfully. Go to home page for that person.
+					Intent i = new Intent(loginHolder, MapActivity.class);
+
+					//Pass in the username for the session
+					i.putExtra("username", username);
+					startActivity(i);
+				}
+				else
+					//Improper login. Wipe password box and ask again
+					Toast.makeText(getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
+			}
+		};
+
+
 	}
 
     @Override
@@ -61,36 +88,20 @@ public class LoginActivity extends ActionBarActivity
 		TextView passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 
 		String username = usernameBox.getText().toString();
+		this.username = username;
+
 		String password = passwordBox.getText().toString();
 
 		//Get the strings for the query
 		String url = this.getString(R.string.db_login_url);
-		dbm.connect(url, true);
-
-		//Wait until we have a response
-		//while(dbm.responseString == null){}
-
-		//If the response is anything but 1, we have not logged in properly.
-		if(Integer.parseInt(dbm.responseString) == 1)
-		{//Logged in successfully. Go to home page for that person.
-			Intent i = new Intent(this, MapActivity.class);
-
-			//Pass in the username for the session
-			i.putExtra("username", username);
-			this.startActivity(i);
-		}
-		else
-		{//Improper login. Wipe password box and ask again
-			Toast.makeText(this.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
-			passwordBox.setText("");
-		}
+		dbm.connect(url, true, "username", username, "password", password);
 	}
 
 	public void loginWithoutLogin(View view)
 	{//Debug method to be removed before final production.
 		//DB connection info
 		String url = this.getString(R.string.db_login_url);
-		dbm.connect(url, true);
+		dbm.connect(url, true, "username", "admin", "password", "pass");
 
 		//Move to the next screen
 		//Intent i = new Intent();
