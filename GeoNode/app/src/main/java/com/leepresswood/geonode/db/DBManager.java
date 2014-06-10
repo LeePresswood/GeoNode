@@ -34,16 +34,37 @@ public class DBManager
 	private String queryString;
 	private boolean responseFlag = false;
 	private Context context;
+	private String[] keys;
+	private String[] values;
 
 	public DBManager(Context applicationContext)
 	{
 		this.context = applicationContext;
 	}
 
-	public void connect(String url, boolean response)
+	public void connect(String url, boolean response, String... values)
 	{//Connect to a web service.
 		this.responseFlag = response;
+
+		//Create arrays for keys and values
+		this.keys = getEveryOther(values, true);
+		this.values = getEveryOther(values, false);
+
 		new DBAsync().execute(url);
+	}
+
+	private String[] getEveryOther(String[] values, boolean startAtZero)
+	{
+		String[] s = new String[values.length / 2];
+		int counter = 0;
+		int start = 1;
+		if(startAtZero)
+			start = 0;
+
+		for(; start < values.length; start += 2)
+			s[counter++] = values[start];
+
+		return s;
 	}
 
 	public static boolean isConnected(Activity a)
