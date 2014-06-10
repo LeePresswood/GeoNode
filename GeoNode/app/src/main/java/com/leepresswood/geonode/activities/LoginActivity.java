@@ -17,7 +17,6 @@ import com.leepresswood.geonode.db.*;
 public class LoginActivity extends ActionBarActivity
 {
 	private DBManager dbm;
-	private String username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -35,9 +34,8 @@ public class LoginActivity extends ActionBarActivity
 			toast = Toast.makeText(context, "You are not connected.", duration);
 		toast.show();
 
-		final LoginActivity loginHolder = this;
-
 		//This listener fires when the result is ready
+		final LoginActivity loginHolder = this;
 		ChangeListener listener = new ChangeListener()
 		{
 			@Override
@@ -49,7 +47,7 @@ public class LoginActivity extends ActionBarActivity
 					Intent i = new Intent(loginHolder, MapActivity.class);
 
 					//Pass in the username for the session
-					i.putExtra("username", username);
+					i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());
 					startActivity(i);
 				}
 				else
@@ -87,8 +85,6 @@ public class LoginActivity extends ActionBarActivity
 		TextView passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 
 		String username = usernameBox.getText().toString();
-		this.username = username;
-
 		String password = passwordBox.getText().toString();
 
 		//Get the strings for the query
