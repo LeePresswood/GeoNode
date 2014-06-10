@@ -24,7 +24,6 @@ public class LoginActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		dbm = new DBManager(this.getApplicationContext());
 
 		//Determine if we're connected
 		Context context = getApplicationContext();
@@ -39,10 +38,10 @@ public class LoginActivity extends ActionBarActivity
 		final LoginActivity loginHolder = this;
 
 		//This listener fires when the result is ready
-		BooleanChangeListener listener = new BooleanChangeListener()
+		ChangeListener listener = new ChangeListener()
 		{
 			@Override
-			public void stateChanged(BooleanChangeEvent event)
+			public void stateChanged()
 			{
 				//If the response is anything but 1, we have not logged in properly.
 				if(Integer.parseInt(dbm.resultString) == 1)
@@ -59,7 +58,7 @@ public class LoginActivity extends ActionBarActivity
 			}
 		};
 
-
+		dbm = new DBManager(this.getApplicationContext(), listener);
 	}
 
     @Override
@@ -102,8 +101,5 @@ public class LoginActivity extends ActionBarActivity
 		//DB connection info
 		String url = this.getString(R.string.db_login_url);
 		dbm.connect(url, true, "username", "admin", "password", "pass");
-
-		//Move to the next screen
-		//Intent i = new Intent();
 	}
 }

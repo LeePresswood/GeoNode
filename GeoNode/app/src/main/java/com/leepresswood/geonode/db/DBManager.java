@@ -19,28 +19,24 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBManager implements BooleanChangeDispatcher
+public class DBManager
 {//The DBManager will connect to a hosted DB and submit a query
 	public String resultString;
 
 	private boolean responseFlag = false;
+	private boolean responseReadyFlag = false;
+	private ChangeListener listener;
 	private Context context;
 	private String[] keys;
 	private String[] values;
 
-	public DBManager(Context applicationContext)
+	public DBManager(Context applicationContext, ChangeListener listener)
 	{
 		this.context = applicationContext;
+		this.listener = listener;
 	}
 
 	public void connect(String url, boolean response, String... values)
@@ -103,6 +99,7 @@ public class DBManager implements BooleanChangeDispatcher
 				Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
 			resultString = result;
+			listener.stateChanged();
 		}
 
 		private String downloadUrl(String url) throws IOException
