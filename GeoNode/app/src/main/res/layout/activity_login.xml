@@ -91,13 +91,29 @@
                     Have a View as the only parameter (this will be the View that was clicked)
                 -->
         <Button
-            android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_enter"
+        android:onClick="loginWithoutLogin"
+        android:background="#ff1bc1e1"
+        android:textSize="17pt"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"/>
+
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/debug_enter"
-            android:onClick="loginWithoutLogin"
-            android:background="#ff1bc1e1"
-            android:textSize="17pt"
-            android:textColor="#ffffffff"
-            android:textStyle="bold"/>
+            android:layout_weight="0.07"
+            android:id="@+id/space4"/>
+
+        <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_register"
+        android:onClick="loginWithoutLogin"
+        android:background="#ff1bc1e1"
+        android:textSize="17pt"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>
