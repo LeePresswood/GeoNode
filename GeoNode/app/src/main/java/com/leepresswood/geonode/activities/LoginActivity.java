@@ -24,15 +24,8 @@ public class LoginActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		//Determine if we're connected
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_LONG;
-		Toast toast;
-		if(dbm.isConnected(this))
-			toast = Toast.makeText(context, "You are connected.", duration);
-		else
-			toast = Toast.makeText(context, "You are not connected.", duration);
-		toast.show();
+		//Display if we're connected
+		Toast.makeText(this.getApplicationContext(), dbm.isConnected(this) ? "You are connected." : "You are not connected.", Toast.LENGTH_LONG).show();
 
 		//This listener fires when the result is ready
 		final LoginActivity loginHolder = this;
