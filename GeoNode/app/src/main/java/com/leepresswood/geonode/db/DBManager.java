@@ -104,10 +104,14 @@ public class DBManager
 
 		private String downloadUrl(String url) throws IOException
 		{
+			//Get the client and connection type
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(url);
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-			nameValuePairs.add(new BasicNameValuePair("query", queryString));
+
+			//Pass data
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(keys.length);
+			for(int i = 0; i < keys.length; i++)
+				nameValuePairs.add(new BasicNameValuePair(keys[i], values[i]));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			// Execute HTTP Post Request
