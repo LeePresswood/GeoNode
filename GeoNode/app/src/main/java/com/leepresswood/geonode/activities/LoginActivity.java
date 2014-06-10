@@ -24,9 +24,6 @@ public class LoginActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		//Display if we're connected
-		Toast.makeText(this.getApplicationContext(), dbm.isConnected(this) ? "You are connected." : "You are not connected.", Toast.LENGTH_LONG).show();
-
 		//This listener fires when the result is ready
 		final LoginActivity loginHolder = this;
 		ChangeListener listener = new ChangeListener()
@@ -50,6 +47,9 @@ public class LoginActivity extends ActionBarActivity
 		};
 
 		dbm = new DBManager(this.getApplicationContext(), listener);
+
+		//Display toast if we're connected
+		Toast.makeText(this.getApplicationContext(), dbm.isConnected(this) ? "You are connected." : "You are not connected.", Toast.LENGTH_LONG).show();
 	}
 
     @Override
@@ -90,7 +90,8 @@ public class LoginActivity extends ActionBarActivity
 	}
 
 	public void register(View view)
-	{//
-
+	{//Register an account. Eventually want to link to Facebook. For now, simple registration will do.
+		Intent i = new Intent(this, RegisterActivity.class);
+		startActivity(i);
 	}
 }
