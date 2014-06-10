@@ -31,7 +31,6 @@ import java.util.List;
 
 public class DBManager
 {//The DBManager will connect to a hosted DB and submit a query
-	private String urlString;
 	private String queryString;
 	private boolean responseFlag = false;
 	private Context context;
@@ -41,12 +40,10 @@ public class DBManager
 		this.context = applicationContext;
 	}
 
-	public void query(String url, String query, boolean response)
-	{//Pass in a query for PSQL. Return success or failure.
-		this.urlString = url;
-		this.queryString = query;
+	public void connect(String url, boolean response)
+	{//Connect to a web service.
 		this.responseFlag = response;
-		new DBAsync().execute();
+		new DBAsync().execute(url);
 	}
 
 	public static String htmlSpecialChars(String s)
@@ -97,7 +94,7 @@ public class DBManager
 		{//Passed strings: 0: URL
 			try
 			{
-				return downloadUrl(urlString);
+				return downloadUrl(strings[0]);
 			} catch (IOException e)
 			{
 				e.printStackTrace();

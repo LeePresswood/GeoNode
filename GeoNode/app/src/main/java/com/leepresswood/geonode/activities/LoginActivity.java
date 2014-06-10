@@ -67,8 +67,7 @@ public class LoginActivity extends ActionBarActivity
 		{//Only do the query if the username and password are safe
 			//Get the strings for the query
 			String url = this.getString(R.string.db_login_url);
-			String query = "SELECT COUNT(*) FROM GeoNode.login WHERE username = " + username + " AND password = " + password + ";";
-			dbm.query(url, query, true);
+			dbm.connect(url, true);
 			
 			//If the response is anything but 1, we have not logged in properly.
 			/*if(Integer.parseInt(response) == 1)
@@ -91,8 +90,7 @@ public class LoginActivity extends ActionBarActivity
 	{//Debug method to be removed before final production.
 		//DB connection info
 		String url = this.getString(R.string.db_login_url);
-		String query = this.getString(R.string.query_login);
-		dbm.query(url, query, true);
+		dbm.connect(url, true);
 
 		//Move to the next screen
 		//Intent i = new Intent();
