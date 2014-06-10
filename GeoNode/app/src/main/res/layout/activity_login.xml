@@ -65,55 +65,54 @@
             android:layout_weight="0.07"
             android:id="@+id/space2"/>
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_submit"
-            android:onClick="login"
-            android:singleLine="false"
-            android:background="#ff1bc1e1"
-            android:textColor="#ffffffff"
-            android:textSize="17pt"
-            android:typeface="sans"
-            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.465"
+                android:text="@string/button_submit"
+                android:onClick="login"
+                android:singleLine="false"
+                android:background="#ff1bc1e1"
+                android:textColor="#ffffffff"
+                android:textSize="17pt"
+                android:typeface="sans"
+                android:textStyle="bold"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.07"
+                android:id="@+id/space3"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.465"
+                android:text="@string/button_register"
+                android:onClick="register"
+                android:background="#ff1bc1e1"
+                android:textSize="17pt"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
         <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.07"
-            android:id="@+id/space3"/>
-        <!--
-                    The onclick searches for the function "sendMessage" in the activity that opened this fragment
-                    In order for the system to match this method to the method name given to android:onClick,
-                    the signature must be exactly as shown. Specifically, the method must:
-                    Be public
-                    Have a void return value
-                    Have a View as the only parameter (this will be the View that was clicked)
-                -->
-        <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/debug_enter"
-        android:onClick="loginWithoutLogin"
-        android:background="#ff1bc1e1"
-        android:textSize="17pt"
-        android:textColor="#ffffffff"
-        android:textStyle="bold"/>
-
-        <Space
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.07"
             android:id="@+id/space4"/>
 
         <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_register"
-        android:onClick="loginWithoutLogin"
-        android:background="#ff1bc1e1"
-        android:textSize="17pt"
-        android:textColor="#ffffffff"
-        android:textStyle="bold"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/debug_enter"
+            android:onClick="loginWithoutLogin"
+            android:background="#ff1bc1e1"
+            android:textSize="17pt"
+            android:textColor="#ffffffff"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

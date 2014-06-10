@@ -88,4 +88,9 @@ public class LoginActivity extends ActionBarActivity
 		String url = this.getString(R.string.db_login_url);
 		dbm.connect(url, true, "username", "admin", "password", "pass");
 	}
+
+	public void register(View view)
+	{//
+
+	}
 }

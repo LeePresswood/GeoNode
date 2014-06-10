@@ -22,5 +22,5 @@
     <string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
 
     <!-- Debug strings -->
-    <string name="debug_enter">Enter Without Login</string>
+    <string name="debug_enter">Debug</string>
 </resources>
