@@ -62,28 +62,24 @@ public class LoginActivity extends ActionBarActivity
 		String username = usernameBox.getText().toString();
 		String password = passwordBox.getText().toString();
 
-		//Protect from SQL injection
-		if(checkSqlInjection(usernameBox, passwordBox))
-		{//Only do the query if the username and password are safe
-			//Get the strings for the query
-			String url = this.getString(R.string.db_login_url);
-			dbm.connect(url, true);
-			
-			//If the response is anything but 1, we have not logged in properly.
-			/*if(Integer.parseInt(response) == 1)
-			{//Logged in successfully. Go to home page for that person.
-				Intent i = new Intent(this, MapActivity.class);
+		//Get the strings for the query
+		String url = this.getString(R.string.db_login_url);
+		dbm.connect(url, true);
 
-				//Pass in the username for the session
-				i.putExtra("username", username);
-				this.startActivity(i);
-			}
-			else
-			{//Improper login. Wipe password box and ask again
-				Toast.makeText(this.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
-				passwordBox.setText("");
-			}*/
+		//If the response is anything but 1, we have not logged in properly.
+		/*if(Integer.parseInt(response) == 1)
+		{//Logged in successfully. Go to home page for that person.
+			Intent i = new Intent(this, MapActivity.class);
+
+			//Pass in the username for the session
+			i.putExtra("username", username);
+			this.startActivity(i);
 		}
+		else
+		{//Improper login. Wipe password box and ask again
+			Toast.makeText(this.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
+			passwordBox.setText("");
+		}*/
 	}
 
 	public void loginWithoutLogin(View view)
@@ -94,23 +90,5 @@ public class LoginActivity extends ActionBarActivity
 
 		//Move to the next screen
 		//Intent i = new Intent();
-	}
-
-	private boolean checkSqlInjection(TextView username, TextView password)
-	{//Check for SQL injection before code is sent to service.
-		String newUsername = DBManager.htmlSpecialChars(username.getText().toString());
-		String newPassword = DBManager.htmlSpecialChars(password.getText().toString());
-
-		//Bad character case
-		if(newUsername.isEmpty() || newPassword.isEmpty())
-		{//Display toast and empty boxes
-			Toast.makeText(this.getApplicationContext(), "Error: Improper character found.", Toast.LENGTH_LONG).show();
-			username.setText("");
-			password.setText("");
-			return false;
-		}
-
-		//Otherwise, there was nothing wrong.
-		return true;
 	}
 }

@@ -46,40 +46,6 @@ public class DBManager
 		new DBAsync().execute(url);
 	}
 
-	public static String htmlSpecialChars(String s)
-	{//Convert the passed string to a form that is good for web work.
-		StringBuilder sb = new StringBuilder();
-		for(char c : s.toCharArray())
-			switch (c)
-			{
-				case ';':
-				case ' ':
-				case '=':
-				case '(':
-				case ')':
-				case '{':
-				case '}':
-				case '[':
-				case ']':
-				case '<':
-				case '>':
-				case '?':
-				case '/':
-				case '*':
-				case '%':
-				case '$':
-				case '#':
-				case '@':
-				case '!':
-				case '^':
-					return null;
-				default:
-					sb.append(c);
-					break;
-			}
-		return sb.toString();
-	}
-
 	public static boolean isConnected(Activity a)
 	{
 		//Determine if connection is available and being used
