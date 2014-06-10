@@ -31,7 +31,7 @@ import java.util.List;
 
 public class DBManager
 {//The DBManager will connect to a hosted DB and submit a query
-	private String queryString;
+	public String responseString = null;
 	private boolean responseFlag = false;
 	private Context context;
 	private String[] keys;
@@ -100,6 +100,8 @@ public class DBManager
 		{//If the responseHolder is not null, store the response in it.
 			if(responseFlag)
 				Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+
+			responseString = result;
 		}
 
 		private String downloadUrl(String url) throws IOException

@@ -1,6 +1,7 @@
 package com.leepresswood.geonode.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -66,8 +67,11 @@ public class LoginActivity extends ActionBarActivity
 		String url = this.getString(R.string.db_login_url);
 		dbm.connect(url, true);
 
+		//Wait until we have a response
+		while(dbm.responseString == null){}
+
 		//If the response is anything but 1, we have not logged in properly.
-		/*if(Integer.parseInt(response) == 1)
+		if(Integer.parseInt(dbm.responseString) == 1)
 		{//Logged in successfully. Go to home page for that person.
 			Intent i = new Intent(this, MapActivity.class);
 
@@ -79,7 +83,7 @@ public class LoginActivity extends ActionBarActivity
 		{//Improper login. Wipe password box and ask again
 			Toast.makeText(this.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
 			passwordBox.setText("");
-		}*/
+		}
 	}
 
 	public void loginWithoutLogin(View view)
