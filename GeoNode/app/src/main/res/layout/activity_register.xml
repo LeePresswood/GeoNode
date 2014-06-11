@@ -12,33 +12,29 @@
 		android:gravity="center_vertical"
 		android:weightSum="1">
 		<EditText android:id="@+id/textfield_username"
-					 android:layout_width="match_parent"
-					 android:layout_height="wrap_content"
-					 android:hint="@string/textfield_username"/>
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/textfield_username"/>
 		<Space
 			 android:layout_width="match_parent"
 			 android:layout_height="wrap_content"
 			 android:layout_weight="0.03"
 			 android:id="@+id/space"/>
 		<EditText android:id="@+id/textfield_password"
-					 android:layout_width="match_parent"
-					 android:layout_height="wrap_content"
-					 android:inputType="textPassword"
-					 android:hint="@string/textfield_password" />
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:inputType="textPassword"
+			android:hint="@string/textfield_password" />
 		<Space
 			 android:layout_width="match_parent"
 			 android:layout_height="wrap_content"
 			 android:layout_weight="0.03"
 			 android:id="@+id/space2"/>
-
 		<Button
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/button_submit"
 			android:onClick="loginWithoutLogin"
-			android:background="@string/color_button_background"
-			android:textSize="17pt"
-			android:textColor="@string/color_button_text"
-			android:textStyle="bold"/>
+			style="@style/ButtonStyle"/>
 	</LinearLayout>
 </RelativeLayout>

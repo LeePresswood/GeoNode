@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!--Design-->
-	<string name="color_button_background">#ff1bc1e1</string>
-	<string name="color_button_text">#ffffff</string>
-
 	<!-- Main -->
 	<string name="app_name">GeoNode</string>
 	<string name="action_settings">Settings</string>
@@ -25,8 +21,6 @@
 	<string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
 
 	<!-- Debug strings -->
-	<string name="debug_enter">Debug</string>
+	<string name="debug_enter">Admin</string>
 	<string name="title_activity_register">RegisterActivity</string>
-	<string name="hello_world">Hello world!</string>
-
 </resources>
