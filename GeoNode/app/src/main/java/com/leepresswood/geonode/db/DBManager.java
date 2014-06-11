@@ -26,7 +26,7 @@ public class DBManager
 {//The DBManager will connect to a hosted DB and submit a query
 	public String resultString;
 
-	private boolean responseFlag = false;
+	private boolean responseFlag;
 	private ChangeListener listener;
 	private Context context;
 	private String[] keys;
@@ -85,7 +85,7 @@ public class DBManager
 			}
 		}
 
-		//This is called each time you call publishProgress()
+		//This is called each time you call publishProgress() in doInBackground()
 		protected void onProgressUpdate(Integer... progress)
 		{
 
@@ -94,9 +94,11 @@ public class DBManager
 		//This is called when doInBackground() is finished
 		protected void onPostExecute(String result)
 		{//If the responseHolder is not null, store the response in it.
+			//Do we want to display the result?
 			if(responseFlag)
 				Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
+			//Set the response and tell the activity that the state changed
 			resultString = result;
 			listener.stateChanged();
 		}

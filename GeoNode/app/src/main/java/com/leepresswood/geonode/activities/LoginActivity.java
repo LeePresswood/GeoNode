@@ -1,6 +1,5 @@
 package com.leepresswood.geonode.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -100,6 +99,6 @@ public class LoginActivity extends ActionBarActivity
 	{//Register an account. Eventually want to link to Facebook. For now, simple registration will do.
 		Intent i = new Intent(this, RegisterActivity.class);
 		startActivity(i);
-		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	}
 }

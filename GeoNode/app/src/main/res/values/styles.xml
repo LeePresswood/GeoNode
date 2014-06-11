@@ -6,7 +6,7 @@
 	</style>
 	<style name="ButtonStyle">
 		<item name="android:background">#ff1bc1e1</item>
-		<item name="android:textSize">17pt</item>
+		<item name="android:textSize">12pt</item>
 		<item name="android:textColor">#ffffff</item>
 		<item name="android:textStyle">bold</item>
 	</style>
