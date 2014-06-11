@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<!--Design-->
+	<string name="color_button_background">#ff1bc1e1</string>
+	<string name="color_button_text">#ffffffff</string>
 
-    <!-- Main -->
-    <string name="app_name">GeoNode</string>
-    <string name="action_settings">Settings</string>
+	<!-- Main -->
+	<string name="app_name">GeoNode</string>
+	<string name="action_settings">Settings</string>
 
-    <!-- Login -->
-    <string name="login_instructions">The following punctuation is not allowed:\n@ ! # $ % ^ &amp; * ( ) { } [ ] ? " ' : ;</string>
-    <string name="title_activity_main">Login</string>
-    <string name="textfield_username">Username</string>
-    <string name="textfield_password">Password</string>
-    <string name="button_submit">Submit</string>
-    <string name="button_register">Register</string>
+	<!-- Login -->
+	<string name="login_instructions">The following punctuation is not allowed:\n@ ! # $ % ^ &amp; * ( ) { } [ ] ? " ' : ;</string>
+	<string name="title_activity_main">Login</string>
+	<string name="textfield_username">Username</string>
+	<string name="textfield_password">Password</string>
+	<string name="button_submit">Submit</string>
+	<string name="button_register">Register</string>
 
-    <!-- Map screen -->
-    <string name="title_activity_map">Map</string>
-    <string name="button_place_node">Place Node at Current Location</string>
+	<!-- Map screen -->
+	<string name="title_activity_map">Map</string>
+	<string name="button_place_node">Place Node at Current Location</string>
 
-    <!--Web Services-->
-    <string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
-    <string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
+	<!-- Web Services -->
+	<string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
+	<string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
 
-    <!-- Debug strings -->
-    <string name="debug_enter">Debug</string>
+	<!-- Debug strings -->
+	<string name="debug_enter">Debug</string>
+	<string name="title_activity_register">RegisterActivity</string>
+	<string name="hello_world">Hello world!</string>
+
 </resources>

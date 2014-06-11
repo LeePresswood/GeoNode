@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/containerLogin"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.leepresswood.geonode.activities.RegisterActivity">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:gravity="center_vertical"
+		android:weightSum="1">
+		<EditText android:id="@+id/textfield_username"
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:hint="@string/textfield_username"/>
+		<Space
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_weight="0.03"
+			 android:id="@+id/space"/>
+		<EditText android:id="@+id/textfield_password"
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:inputType="textPassword"
+					 android:hint="@string/textfield_password" />
+		<Space
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_weight="0.03"
+			 android:id="@+id/space2"/>
+
+		<Button
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/button_submit"
+			android:onClick="loginWithoutLogin"
+			android:background="#ff1bc1e1"
+			android:textSize="17pt"
+			android:textColor="#ffffffff"
+			android:textStyle="bold"/>
+	</LinearLayout>
+</RelativeLayout>

@@ -27,7 +27,6 @@ public class DBManager
 	public String resultString;
 
 	private boolean responseFlag = false;
-	private boolean responseReadyFlag = false;
 	private ChangeListener listener;
 	private Context context;
 	private String[] keys;
