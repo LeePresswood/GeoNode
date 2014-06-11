@@ -2,7 +2,7 @@
 <resources>
 	<!--Design-->
 	<string name="color_button_background">#ff1bc1e1</string>
-	<string name="color_button_text">#ffffffff</string>
+	<string name="color_button_text">#ffffff</string>
 
 	<!-- Main -->
 	<string name="app_name">GeoNode</string>

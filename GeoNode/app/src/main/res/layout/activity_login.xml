@@ -61,8 +61,8 @@
                 android:text="@string/button_submit"
                 android:onClick="login"
                 android:singleLine="false"
-                android:background="#ff1bc1e1"
-                android:textColor="#ffffffff"
+                android:background="@string/color_button_background"
+                android:textColor="@string/color_button_text"
                 android:textSize="17pt"
                 android:typeface="sans"
                 android:textStyle="bold"/>
@@ -79,9 +79,9 @@
                 android:layout_weight="0.9"
                 android:text="@string/button_register"
                 android:onClick="register"
-                android:background="#ff1bc1e1"
+                android:background="@string/color_button_background"
                 android:textSize="17pt"
-                android:textColor="#ffffffff"
+                android:textColor="@string/color_button_text"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -96,9 +96,9 @@
             android:layout_height="wrap_content"
             android:text="@string/debug_enter"
             android:onClick="loginWithoutLogin"
-            android:background="#ff1bc1e1"
+            android:background="@string/color_button_background"
             android:textSize="17pt"
-            android:textColor="#ffffffff"
+            android:textColor="@string/color_button_text"
             android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

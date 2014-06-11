@@ -36,9 +36,9 @@
 			android:layout_height="wrap_content"
 			android:text="@string/button_submit"
 			android:onClick="loginWithoutLogin"
-			android:background="#ff1bc1e1"
+			android:background="@string/color_button_background"
 			android:textSize="17pt"
-			android:textColor="#ffffffff"
+			android:textColor="@string/color_button_text"
 			android:textStyle="bold"/>
 	</LinearLayout>
 </RelativeLayout>
