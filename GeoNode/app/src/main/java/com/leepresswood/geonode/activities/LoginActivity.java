@@ -32,7 +32,7 @@ public class LoginActivity extends ActionBarActivity
 			public void stateChanged()
 			{
 				//If the response is anything but 1, we have not logged in properly.
-				if(Integer.parseInt(dbm.resultString) == 1)
+				if(dbm.resultString == "1")
 				{//Logged in successfully. Go to home page for that person.
 					Intent i = new Intent(loginHolder, MapActivity.class);
 
@@ -79,14 +79,21 @@ public class LoginActivity extends ActionBarActivity
 
 		//Get the strings for the query
 		String url = this.getString(R.string.db_login_url);
-		dbm.connect(url, true, "username", username, "password", password);
+		dbm.connect(url, false, "username", username, "password", password);
 	}
 
 	public void loginWithoutLogin(View view)
 	{//Debug method to be removed before final production.
 		//DB connection info
 		String url = this.getString(R.string.db_login_url);
-		dbm.connect(url, true, "username", "admin", "password", "pass");
+
+		//Set the usename and password for later
+		EditText usernameBox = (EditText) this.findViewById(R.id.textfield_username);
+		EditText passwordBox = (EditText) this.findViewById(R.id.textfield_password);
+
+		usernameBox.setText("admin");
+		passwordBox.setText("pass");
+		dbm.connect(url, false, "username", "admin", "password", "pass");
 	}
 
 	public void register(View view)
