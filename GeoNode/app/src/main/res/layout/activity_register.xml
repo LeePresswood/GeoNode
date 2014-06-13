@@ -34,7 +34,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/button_submit"
-			android:onClick="loginWithoutLogin"
+			android:onClick="register"
 			style="@style/ButtonStyle"/>
 	</LinearLayout>
 </RelativeLayout>
