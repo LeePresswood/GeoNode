@@ -19,6 +19,7 @@
 
 	<!-- Web Services -->
 	<string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
+	<string name="db_register_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/register.php</string>
 	<string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
 
 	<!-- Debug strings -->

@@ -31,25 +31,22 @@ public class RegisterActivity extends Activity
 			public void stateChanged()
 			{
 				//If the response is anything but 1, we have not logged in properly.
-				if(dbm.resultString == "1")
-				{//Logged in successfully. Go to home page for that person.
-					Intent i = new Intent(holder, MapActivity.class);
+				//if(dbm.resultString == "1")
+				{//Registered successfully. Go to home page for that username
+					//Intent i = new Intent(holder, MapActivity.class);
 
 					//Pass in the username for the session
-					i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
-					startActivity(i);
+					//i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
+					//startActivity(i);
+					Toast.makeText(holder.getApplicationContext(), dbm.resultString, Toast.LENGTH_SHORT).show();
 				}
-				else
+				//else
 					//Improper login. Ask again
-					Toast.makeText(holder.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
 			}
 		};
 
 		dbm = new DBManager(this.getApplicationContext(), listener);
-
-		//Display toast if we're connected
-		Toast.makeText(this.getApplicationContext(), dbm.isConnected(this) ? "You are connected." : "You are not connected.", Toast.LENGTH_LONG).show();
-
 	}
 
 
@@ -74,6 +71,15 @@ public class RegisterActivity extends Activity
 
 	public void register(View view)
 	{//Submit login details to the server for registration
+		//Gather the username and password
+		EditText usernameBox = (EditText) this.findViewById(R.id.textfield_username);
+		EditText passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 
+		String username = usernameBox.getText().toString();
+		String password = passwordBox.getText().toString();
+
+		//Get the strings for the query
+		String url = this.getString(R.string.db_register_url);
+		dbm.connect(url, false, "username", username, "password", password);
 	}
 }
