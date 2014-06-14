@@ -6,24 +6,9 @@ public class CodeResponseSplitter
 	public String response;
 	
 	public CodeResponseSplitter(String returnString)
-	{
-		//The number in front of the colon is the error code.
-		String numGrabber = "";
-		int counter = 0;
-		char c;
-
-		//Grab until the colon
-		do
-		{
-			c = charAt(counter++);
-			if(c != ':')
-				numGrabber += c;
-		}while(c != ':')
-
-		//Counter is at the colon.
-		counter++;
-
-		//Everything after the colon is the response
-		
+	{//The number in front of the colon is the error code. Behind is the server message.
+		int colonNum = returnString.indexOf(":");
+		code = Integer.parseInt(returnString.substring(0, colonNum));
+		response = returnString.substring(colonNum);
 	}
 }
