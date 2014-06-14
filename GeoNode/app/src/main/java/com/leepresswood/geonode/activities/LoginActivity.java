@@ -27,7 +27,7 @@ public class LoginActivity extends ActionBarActivity
 
 		//This listener fires when the result is ready
 		final LoginActivity loginHolder = this;
-		ChangeListener listener = new ChangeListener()
+		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
 		{
 			@Override
 			public void stateChanged()
@@ -45,11 +45,7 @@ public class LoginActivity extends ActionBarActivity
 					//Improper login. Ask again
 					Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_SHORT).show();
 			}
-		};
-		dbm = new DBManager(this.getApplicationContext(), listener);
-
-		//Display toast if we're connected
-		Toast.makeText(this.getApplicationContext(), dbm.isConnected(this) ? "You are connected." : "You are not connected.", Toast.LENGTH_LONG).show();
+		});
 	}
 
     @Override
