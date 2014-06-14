@@ -25,7 +25,7 @@ public class RegisterActivity extends Activity
 
 		//This listener fires when the result is ready
 		final RegisterActivity holder = this;
-		ChangeListener listener = new ChangeListener()
+		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
 		{
 			@Override
 			public void stateChanged()
@@ -41,12 +41,10 @@ public class RegisterActivity extends Activity
 					Toast.makeText(holder.getApplicationContext(), dbm.resultString, Toast.LENGTH_SHORT).show();
 				}
 				//else
-					//Improper login. Ask again
-					//Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
+				//Improper login. Ask again
+				//Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
 			}
-		};
-
-		dbm = new DBManager(this.getApplicationContext(), listener);
+		});
 	}
 
 
