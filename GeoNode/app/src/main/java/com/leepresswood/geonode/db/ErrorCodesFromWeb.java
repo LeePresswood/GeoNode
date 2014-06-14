@@ -25,6 +25,8 @@ public class ErrorCodesFromWeb
 				return "Database select error.";
 			case DB_DELETE_ERROR:
 				return "Database delete error.";
+			default:
+				return getErrorText(SUCCESS);
 		}
 	}
 }
