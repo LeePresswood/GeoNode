@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.leepresswood.geonode.CrossFadeActivity;
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.db.ChangeListener;
 import com.leepresswood.geonode.db.CodeResponseSplitter;
@@ -33,7 +32,8 @@ public class LoginActivity extends ActionBarActivity
 			@Override
 			public void stateChanged()
 			{//If the response is anything but 1, we have not logged in properly.
-				if(new CodeResponseSplitter(dbm.resultString).code == ErrorCodesFromWeb.SUCCESS)
+				int code = new CodeResponseSplitter(dbm.resultString).code;
+				if(code == ErrorCodesFromWeb.SUCCESS)
 				{//Logged in successfully. Go to home page for that person.
 					Intent i = new Intent(loginHolder, MapActivity.class);
 
@@ -43,7 +43,7 @@ public class LoginActivity extends ActionBarActivity
 				}
 				else
 					//Improper login. Ask again
-					Toast.makeText(loginHolder.getApplicationContext(), "Error: Incorrect username or password.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_SHORT).show();
 			}
 		};
 		dbm = new DBManager(this.getApplicationContext(), listener);
