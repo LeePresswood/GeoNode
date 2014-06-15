@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.leepresswood.geonode.R;
+import com.leepresswood.geonode.activities.MapsActivity;
 import com.leepresswood.geonode.db.ChangeListener;
 import com.leepresswood.geonode.db.CodeResponseSplitter;
 import com.leepresswood.geonode.db.DBManager;
@@ -35,7 +36,7 @@ public class LoginActivity extends ActionBarActivity
 				int code = new CodeResponseSplitter(dbm.resultString).code;
 				if(code == ErrorCodesFromWeb.SUCCESS)
 				{//Logged in successfully. Go to home page for that person.
-					Intent i = new Intent(loginHolder, MapActivity.class);
+					Intent i = new Intent(loginHolder, MapsActivity.class);
 
 					//Pass in the username for the session
 					i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());

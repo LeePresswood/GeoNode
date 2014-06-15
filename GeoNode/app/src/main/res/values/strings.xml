@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- Main -->
-	<string name="app_name">GeoNode</string>
-	<string name="action_settings">Settings</string>
 
-	<!-- Login -->
-	<string name="login_instructions">Login</string>
-	<string name="title_activity_main">Login</string>
-	<string name="textfield_username">Username</string>
-	<string name="textfield_password">Password</string>
-	<string name="button_submit">Submit</string>
-	<string name="button_register">Register</string>
+    <!-- Main -->
+    <string name="app_name">GeoNode</string>
+    <string name="action_settings">Settings</string>
 
-	<!-- Map screen -->
-	<string name="google_maps_key">Map</string>
-	<string name="title_activity_map">Map</string>
-	<string name="button_place_node">Place Node at Current Location</string>
+    <!-- Login -->
+    <string name="login_instructions">Login</string>
+    <string name="title_activity_main">Login</string>
+    <string name="textfield_username">Username</string>
+    <string name="textfield_password">Password</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_register">Register</string>
 
-	<!-- Web Services -->
-	<string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
-	<string name="db_register_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/register.php</string>
-	<string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
+    <!-- Map screen -->
+    <string name="google_maps_key">Map</string>
+    <string name="title_activity_map">Map</string>
+    <string name="button_place_node">Place Node at Current Location</string>
 
-	<!-- Debug strings -->
-	<string name="debug_enter">Admin</string>
-	<string name="title_activity_register">RegisterActivity</string>
-	<string name="hello_world">Hello world!</string>
+    <!-- Web Services -->
+    <string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
+    <string name="db_register_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/register.php</string>
+    <string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
+
+    <!-- Debug strings -->
+    <string name="debug_enter">Admin</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>
