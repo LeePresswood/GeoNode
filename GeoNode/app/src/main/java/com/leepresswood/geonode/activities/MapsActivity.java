@@ -1,13 +1,12 @@
 package com.leepresswood.geonode.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.db.ChangeListener;
 import com.leepresswood.geonode.db.CodeResponseSplitter;
@@ -17,11 +16,17 @@ import com.leepresswood.geonode.db.ErrorCodesFromWeb;
 public class MapsActivity extends ActionBarActivity
 {
 	private DBManager dbm;
+	private MapView map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_maps);
+
+		//Set up the map
+		map = (MapView) findViewById(R.id.map);
+		map
+		map.getMap().setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
 		//This listener fires when the result is ready
 		final MapsActivity holder = this;
