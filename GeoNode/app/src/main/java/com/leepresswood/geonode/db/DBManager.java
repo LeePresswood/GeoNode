@@ -41,8 +41,6 @@ public class DBManager
 	public void connect(String url, boolean response, String... values)
 	{//Connect to a web service.
 		this.responseFlag = response;
-
-		//Create arrays for keys and values
 		this.keys = getEveryOther(values, true);
 		this.values = getEveryOther(values, false);
 
@@ -50,25 +48,19 @@ public class DBManager
 	}
 
 	private String[] getEveryOther(String[] values, boolean startAtZero)
-	{
+	{//Get every other value in the passed string array.
 		String[] s = new String[values.length / 2];
 		int counter = 0;
-		int start = 1;
-		if(startAtZero)
-			start = 0;
-
-		for(; start < values.length; start += 2)
+		
+		for(int start = (startAtZero ? 0 : 1); start < values.length; start += 2)
 			s[counter++] = values[start];
-
 		return s;
 	}
 
 	public static boolean isConnected(Activity a)
-	{
-		//Determine if connection is available and being used
+	{//Determine if connection is available and being used
 		ConnectivityManager connMgr = (ConnectivityManager) a.getSystemService(ActionBarActivity.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		return networkInfo != null && networkInfo.isConnected();
+		return connMgr.getActiveNetworkInfo() != null && connMgr.getActiveNetworkInfo().isConnected();
 	}
 
 	private class DBAsync extends AsyncTask<String, Void, String>
