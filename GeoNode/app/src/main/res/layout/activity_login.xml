@@ -9,60 +9,61 @@
 	 tools:ignore="MergeRootFrame">
 	<TableRow>
 		<TextView
-			 android:layout_width="wrap_content"
-			 android:layout_height="wrap_content"
-			 android:textAppearance="?android:attr/textAppearanceLarge"
-			 android:text="@string/login_instructions"
-			 android:id="@+id/loginInstructionsView"/>
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="@string/login_instructions"
+			android:id="@+id/loginInstructionsView"/>
 	</TableRow>
 	<TableRow>
 		<EditText android:id="@+id/textfield_username"
-					 android:layout_width="match_parent"
-					 android:layout_height="wrap_content"
-					 android:hint="@string/textfield_username"
-					 android:layout_span="3"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="@string/textfield_username"/>
 	</TableRow>
 	<TableRow>
 		<EditText android:id="@+id/textfield_password"
-					 android:layout_width="match_parent"
-					 android:layout_height="wrap_content"
-					 android:inputType="textPassword"
-					 android:hint="@string/textfield_password"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="textPassword"
+			android:hint="@string/textfield_password"/>
 	</TableRow>
 	<TableRow>
 		<Button
-		 android:layout_width="0dp"
-		 android:layout_height="wrap_content"
-		 android:layout_weight="0.9"
-		 android:text="@string/button_submit"
-		 android:onClick="login"
-		 style="@style/ButtonStyle"
-		 android:textStyle="bold"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.9"
+			android:text="@string/button_submit"
+			android:onClick="login"
+			style="@style/ButtonStyle"
+			android:textStyle="bold"/>
 		<Space
-			 android:layout_width="0dp"
-			 android:layout_height="wrap_content"
-			 android:layout_weight="0.03"
-			 android:id="@+id/space3"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.03"
+			android:id="@+id/space3"/>
 		<Button
-			 android:layout_width="0dp"
-			 android:layout_height="wrap_content"
-			 android:layout_weight="0.9"
-			 android:text="@string/button_register"
-			 android:onClick="register"
-			 style="@style/ButtonStyle"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.9"
+			android:text="@string/button_register"
+			android:onClick="register"
+			style="@style/ButtonStyle"/>
 	</TableRow>
 	<Space
-		 android:layout_width="match_parent"
+		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="0.03"
 		android:id="@+id/space4"/>
 	<TableRow>
 		<Button
-			 android:layout_width="wrap_content"
-			 android:layout_height="wrap_content"
-			 android:text="@string/debug_enter"
-			 android:onClick="loginWithoutLogin"
-			 style="@style/ButtonStyle"
-			 android:layout_span="3"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/debug_enter"
+			android:onClick="loginWithoutLogin"
+			style="@style/ButtonStyle"/>
 	</TableRow>
 </TableLayout>

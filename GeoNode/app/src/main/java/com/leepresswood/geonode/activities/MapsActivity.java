@@ -33,15 +33,16 @@ public class MapsActivity extends ActionBarActivity
 				int code = new CodeResponseSplitter(dbm.resultString).code;
 				if(code == ErrorCodesFromWeb.SUCCESS)
 				{//Logged in successfully. Go to home page for that person.
-					Intent i = new Intent(holder, MapsActivity.class);
+					/*Intent i = new Intent(holder, MapsActivity.class);
 
 					//Pass in the username for the session
 					i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
-					startActivity(i);
+					startActivity(i);*/
 				}
-				else
+				/*else
 					//Improper login. Ask again
 					Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_SHORT).show();
+				*/
 			}
 		});
 	}
