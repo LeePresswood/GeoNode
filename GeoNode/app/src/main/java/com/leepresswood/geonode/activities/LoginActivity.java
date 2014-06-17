@@ -31,7 +31,7 @@ public class LoginActivity extends ActionBarActivity
 		{
 			@Override
 			public void stateChanged()
-			{//If the response is anything but 1, we have not logged in properly.
+			{
 				int code = new CodeResponseSplitter(dbm.resultString).code;
 				if(code == ErrorCodesFromWeb.SUCCESS)
 				{//Logged in successfully. Go to home page for that person.
