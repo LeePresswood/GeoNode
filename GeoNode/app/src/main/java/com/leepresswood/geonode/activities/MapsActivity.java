@@ -55,12 +55,17 @@ public class MapsActivity extends ActionBarActivity
 
 	private void setUpMap()
 	{//Set up the map and move to your location at the correct zoom.
+		//Helpful link: https://developers.google.com/maps/documentation/android/views
+		//Make the map and set its properties
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		map.setMyLocationEnabled(true);
+		map.setIndoorEnabled(false);
+		map.setBuildingsEnabled(false);
 
-		LatLng me = new LatLng(33, 24);
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(me, 15));
+		//Set the starting location
+		LatLng startLocation = new LatLng(-33.88,151.21);
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 15));
 	}
 
 	@Override
