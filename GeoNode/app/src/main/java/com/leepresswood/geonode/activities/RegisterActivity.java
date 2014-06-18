@@ -1,6 +1,7 @@
 package com.leepresswood.geonode.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,9 @@ import android.widget.Toast;
 
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.db.ChangeListener;
+import com.leepresswood.geonode.db.CodeResponseSplitter;
 import com.leepresswood.geonode.db.DBManager;
+import com.leepresswood.geonode.db.ErrorCodesFromWeb;
 
 public class RegisterActivity extends Activity
 {
@@ -34,19 +37,18 @@ public class RegisterActivity extends Activity
 			@Override
 			public void stateChanged()
 			{
-				//If the response is anything but 1, we have not logged in properly.
-				//if(dbm.resultString == "1")
+				int code = new CodeResponseSplitter(dbm.resultString).code;
+				if(code == ErrorCodesFromWeb.SUCCESS)
 				{//Registered successfully. Go to home page for that username
-					//Intent i = new Intent(holder, MapActivity.class);
+					Intent i = new Intent(holder, MapsActivity.class);
 
 					//Pass in the username for the session
-					//i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
-					//startActivity(i);
-					Toast.makeText(holder.getApplicationContext(), dbm.resultString, Toast.LENGTH_SHORT).show();
+					i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
+					startActivity(i);
 				}
-				//else
+				else
 				//Improper login. Ask again
-				//Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
