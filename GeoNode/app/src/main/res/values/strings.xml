@@ -13,8 +13,9 @@
     <string name="button_register">Register</string>
 
     <!-- Map screen -->
-    <string name="title_activity_map">Map</string>
-    <string name="button_place_node">Place Node</string>
+	<string name="title_activity_map">Map</string>
+	<string name="button_place_node">Place Node</string>
+	<string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyCPKuaystCmVDidpVYkrTH4q6_6Z5vwwUA</string>
 
     <!-- Web Services -->
     <string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
