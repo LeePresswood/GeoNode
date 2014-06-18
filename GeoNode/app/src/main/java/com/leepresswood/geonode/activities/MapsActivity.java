@@ -5,8 +5,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.leepresswood.geonode.R;
 import com.leepresswood.geonode.db.ChangeListener;
 import com.leepresswood.geonode.db.CodeResponseSplitter;
@@ -16,7 +18,7 @@ import com.leepresswood.geonode.db.ErrorCodesFromWeb;
 public class MapsActivity extends ActionBarActivity
 {
 	private DBManager dbm;
-	private MapView map;
+	private GoogleMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,8 @@ public class MapsActivity extends ActionBarActivity
 		setContentView(R.layout.activity_maps);
 
 		//Set up the map
-		map = (MapView) findViewById(R.id.map);
-		map
-		map.getMap().setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		this.setUpMap();
+
 
 		//This listener fires when the result is ready
 		final MapsActivity holder = this;
@@ -50,6 +51,16 @@ public class MapsActivity extends ActionBarActivity
 				*/
 			}
 		});
+	}
+
+	private void setUpMap()
+	{//Set up the map and move to your location at the correct zoom.
+		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		map.setMyLocationEnabled(true);
+
+		LatLng me = new LatLng(33, 24);
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(me, 15));
 	}
 
 	@Override

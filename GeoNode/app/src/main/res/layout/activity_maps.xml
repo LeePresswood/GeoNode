@@ -6,14 +6,13 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
 	tools:context=".activities.MapsActivity">
-	<view
-		 android:layout_width="wrap_content"
-		 android:layout_height="0dp"
-		 android:layout_weight="0.9"
-		 class="com.google.android.gms.maps.MapView"
-		 android:id="@+id/map"
-		 android:layout_gravity="center_horizontal"/>
-
+	<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/map"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="0.95"
+		android:name="com.google.android.gms.maps.MapFragment"
+		tools:layout="@layout/abc_search_view"/>
 	<Button
 		 android:layout_width="match_parent"
 		 android:layout_height="0dp"
