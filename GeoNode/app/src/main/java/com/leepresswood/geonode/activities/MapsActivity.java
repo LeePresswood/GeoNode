@@ -25,10 +25,12 @@ public class MapsActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_maps);
 
-		//Set up the map
+		this.databaseInit();
 		this.setUpMap();
+	}
 
-
+	private void databaseInit()
+	{
 		//This listener fires when the result is ready
 		final MapsActivity holder = this;
 		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
@@ -65,7 +67,7 @@ public class MapsActivity extends ActionBarActivity
 
 		//Set the starting location
 		LatLng startLocation = new LatLng(-33.88,151.21);
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 15));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 17));
 	}
 
 	@Override

@@ -25,6 +25,11 @@ public class LoginActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
+		this.databaseInit();
+	}
+
+	private void databaseInit()
+	{
 		//This listener fires when the result is ready
 		final LoginActivity loginHolder = this;
 		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
