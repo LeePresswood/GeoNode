@@ -29,26 +29,52 @@ public class RegisterActivity extends Activity
 	}
 
 	private void databaseInit()
-	{
-		//This listener fires when the result is ready
+	{//This listener fires when the result is ready
 		final RegisterActivity holder = this;
 		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
 		{
 			@Override
 			public void stateChanged()
 			{
-				int code = new CodeResponseSplitter(dbm.resultString).code;
-				if(code == ErrorCodesFromWeb.SUCCESS)
-				{//Registered successfully. Go to home page for that username
-					Intent i = new Intent(holder, MapsActivity.class);
+				CodeResponseSplitter crs =  new CodeResponseSplitter(dbm.resultString);
+				int code = crs.code;
+				String response = crs.response;
+				switch(code)
+				{
+					case ErrorCodesFromWeb.SUCCESS:
+						//Queried successfully. Determine if the login was successful.
+						if(Boolean.parseBoolean(response))
+						{//Person found.
+							Intent i = new Intent(holder, MapsActivity.class);
 
-					//Pass in the username for the session
-					i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
-					startActivity(i);
+							//Pass the username for the session
+							i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
+							startActivity(i);
+						}
+						else
+						{//Person found in DB already
+							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_LONG).show();
+						}
+						break;
+					case ErrorCodesFromWeb.INVALID_CHAR_FOUND:
+						//Bad character found
+						//Delete both username and password and tell user.
+						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
+						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						break;
+					case ErrorCodesFromWeb.POST_NOT_SET:
+						//Must submit something for both fields
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						break;
+					case ErrorCodesFromWeb.DB_INSERT_ERROR:
+						//Database error
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: Database service not available.", Toast.LENGTH_LONG).show();
+						break;
+					default:
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
+						break;
 				}
-				else
-				//Improper login. Ask again
-				Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

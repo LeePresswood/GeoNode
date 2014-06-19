@@ -42,13 +42,13 @@ public class LoginActivity extends ActionBarActivity
 				String response = crs.response;
 				switch(code)
 				{
-					case ErrorCodesFromWeb.SUCCESS""
+					case ErrorCodesFromWeb.SUCCESS:
 						//Queried successfully. Determine if the login was successful.
 						if(Boolean.parseBoolean(response))
 						{//Person found.
 							Intent i = new Intent(loginHolder, MapsActivity.class);
 
-							//Pass in the username for the session
+							//Pass the username for the session
 							i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());
 							startActivity(i);
 						}
@@ -71,6 +71,9 @@ public class LoginActivity extends ActionBarActivity
 					case ErrorCodesFromWeb.DB_SELECT_ERROR:
 						//Database error
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: Database service not available.", Toast.LENGTH_LONG).show();
+						break;
+					default:
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
 						break;
 				}
 			}
