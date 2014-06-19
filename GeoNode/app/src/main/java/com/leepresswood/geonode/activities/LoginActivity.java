@@ -58,8 +58,7 @@ public class LoginActivity extends ActionBarActivity
 							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username-Password pair not found.", Toast.LENGTH_LONG).show();
 						}
 						break;
-					case ErrorCodesFromWeb.INVALID_CHAR_FOUND:
-						//Bad character found
+					case ErrorCodesFromWeb.INVALID_CHAR_FOUND: //Bad character found
 						//Delete both username and password and tell user.
 						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
 						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
@@ -68,7 +67,7 @@ public class LoginActivity extends ActionBarActivity
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
 					default:
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
 						break;
 				}
 			}
@@ -110,7 +109,7 @@ public class LoginActivity extends ActionBarActivity
 		//DB connection info
 		String url = this.getString(R.string.db_login_url);
 
-		//Set the usename and password for later
+		//Set the usename and password
 		EditText usernameBox = (EditText) this.findViewById(R.id.textfield_username);
 		EditText passwordBox = (EditText) this.findViewById(R.id.textfield_password);
 

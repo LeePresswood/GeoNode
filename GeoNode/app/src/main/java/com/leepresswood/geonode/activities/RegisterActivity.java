@@ -58,8 +58,7 @@ public class RegisterActivity extends Activity
 							Toast.makeText(holder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_LONG).show();
 						}
 						break;
-					case ErrorCodesFromWeb.INVALID_CHAR_FOUND:
-						//Bad character found
+					case ErrorCodesFromWeb.INVALID_CHAR_FOUND: //Bad character found
 						//Delete both username and password and tell user.
 						((EditText) holder.findViewById(R.id.textfield_username)).setText("");
 						((EditText) holder.findViewById(R.id.textfield_password)).setText("");
@@ -69,7 +68,7 @@ public class RegisterActivity extends Activity
 						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
 					default:
-						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
 						break;
 				}
 			}
