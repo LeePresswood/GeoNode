@@ -52,22 +52,24 @@ public class RegisterActivity extends Activity
 							startActivity(i);
 						}
 						else
-						{//Person found in DB already
-							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username already exists.", Toast.LENGTH_LONG).show();
+						{//Person found in DB already. Clear both fields.
+							((EditText) holder.findViewById(R.id.textfield_username)).setText("");
+							((EditText) holder.findViewById(R.id.textfield_password)).setText("");
+							Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						}
 						break;
 					case ErrorCodesFromWeb.INVALID_CHAR_FOUND:
 						//Bad character found
 						//Delete both username and password and tell user.
-						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
-						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
+						((EditText) holder.findViewById(R.id.textfield_username)).setText("");
+						((EditText) holder.findViewById(R.id.textfield_password)).setText("");
 					case ErrorCodesFromWeb.POST_NOT_SET: //Must submit something for both fields
 					case ErrorCodesFromWeb.DB_INSERT_ERROR:
 						//Database error
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
 					default:
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
 						break;
 				}
 			}

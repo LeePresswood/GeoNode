@@ -53,7 +53,8 @@ public class LoginActivity extends ActionBarActivity
 							startActivity(i);
 						}
 						else
-						{//Person not found or password incorrect
+						{//Person not found or password incorrect. Clear password field
+							((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
 							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username-Password pair not found.", Toast.LENGTH_LONG).show();
 						}
 						break;
@@ -62,15 +63,9 @@ public class LoginActivity extends ActionBarActivity
 						//Delete both username and password and tell user.
 						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
 						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
+					case ErrorCodesFromWeb.POST_NOT_SET: //Must submit something for both fields
+					case ErrorCodesFromWeb.DB_SELECT_ERROR: //Database error
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
-						break;
-					case ErrorCodesFromWeb.POST_NOT_SET:
-						//Must submit something for both fields
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
-						break;
-					case ErrorCodesFromWeb.DB_SELECT_ERROR:
-						//Database error
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: Database service not available.", Toast.LENGTH_LONG).show();
 						break;
 					default:
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
