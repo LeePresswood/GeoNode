@@ -37,18 +37,42 @@ public class LoginActivity extends ActionBarActivity
 			@Override
 			public void stateChanged()
 			{
-		int code = new CodeResponseSplitter(dbm.resultString).code;
-		if(code == ErrorCodesFromWeb.SUCCESS)
-		{//Logged in successfully. Go to home page for that person.
-			Intent i = new Intent(loginHolder, MapsActivity.class);
+				CodeResponseSplitter crs =  new CodeResponseSplitter(dbm.resultString);
+				int code = crs.code;
+				String response = crs.response;
+				switch(code)
+				{
+					case ErrorCodesFromWeb.SUCCESS""
+						//Queried successfully. Determine if the login was successful.
+						if(Boolean.parseBoolean(response))
+						{//Person found.
+							Intent i = new Intent(loginHolder, MapsActivity.class);
 
-			//Pass in the username for the session
-			i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());
-			startActivity(i);
-		}
-		else
-			//Improper login. Ask again
-			Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_SHORT).show();
+							//Pass in the username for the session
+							i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());
+							startActivity(i);
+						}
+						else
+						{//Person not found or password incorrect
+							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username-Password pair not found.", Toast.LENGTH_LONG).show();
+						}
+						break;
+					case ErrorCodesFromWeb.INVALID_CHAR_FOUND:
+						//Bad character found
+						//Delete both username and password and tell user.
+						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
+						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						break;
+					case ErrorCodesFromWeb.POST_NOT_SET:
+						//Must submit something for both fields
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						break;
+					case ErrorCodesFromWeb.DB_SELECT_ERROR:
+						//Database error
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: Database service not available.", Toast.LENGTH_LONG).show();
+						break;
+				}
 			}
 		});
 	}
