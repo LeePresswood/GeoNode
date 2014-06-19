@@ -15,7 +15,7 @@ import com.leepresswood.geonode.db.CodeResponseSplitter;
 import com.leepresswood.geonode.db.DBManager;
 import com.leepresswood.geonode.db.ErrorCodesFromWeb;
 
-public class MapsActivity extends ActionBarActivity
+public class MapsActivity extends ActionBarActivity implements DatabaseActivityInterface
 {
 	private DBManager dbm;
 	private GoogleMap map;
@@ -29,7 +29,8 @@ public class MapsActivity extends ActionBarActivity
 		this.setUpMap();
 	}
 
-	private void databaseInit()
+	@Override
+	public void databaseInit()
 	{
 		//This listener fires when the result is ready
 		final MapsActivity holder = this;

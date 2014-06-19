@@ -15,7 +15,7 @@ import com.leepresswood.geonode.db.CodeResponseSplitter;
 import com.leepresswood.geonode.db.DBManager;
 import com.leepresswood.geonode.db.ErrorCodesFromWeb;
 
-public class RegisterActivity extends Activity
+public class RegisterActivity extends Activity implements DatabaseActivityInterface
 {
 	private DBManager dbm;
 
@@ -28,7 +28,8 @@ public class RegisterActivity extends Activity
 		this.databaseInit();
 	}
 
-	private void databaseInit()
+	@Override
+	public void databaseInit()
 	{//This listener fires when the result is ready
 		final RegisterActivity holder = this;
 		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
