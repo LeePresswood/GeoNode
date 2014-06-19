@@ -61,13 +61,10 @@ public class RegisterActivity extends Activity
 						//Delete both username and password and tell user.
 						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
 						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
-					case ErrorCodesFromWeb.POST_NOT_SET:
-						//Must submit something for both fields
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
-						break;
+					case ErrorCodesFromWeb.POST_NOT_SET: //Must submit something for both fields
 					case ErrorCodesFromWeb.DB_INSERT_ERROR:
 						//Database error
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: Database service not available.", Toast.LENGTH_LONG).show();
+						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
 					default:
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown", Toast.LENGTH_LONG).show();
