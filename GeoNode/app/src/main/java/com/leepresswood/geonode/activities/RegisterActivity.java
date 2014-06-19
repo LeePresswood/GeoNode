@@ -61,8 +61,6 @@ public class RegisterActivity extends Activity
 						//Delete both username and password and tell user.
 						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
 						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
-						break;
 					case ErrorCodesFromWeb.POST_NOT_SET:
 						//Must submit something for both fields
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
