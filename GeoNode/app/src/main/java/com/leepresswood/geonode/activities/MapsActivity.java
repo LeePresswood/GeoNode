@@ -51,7 +51,7 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		{
 			@Override
 			public void stateChanged()
-			{//If the response is anything but 1, we have not logged in properly.
+			{
 				CodeResponseSplitter crs =  new CodeResponseSplitter(dbm.resultString);
 				int code = crs.code;
 				String response = crs.response;
