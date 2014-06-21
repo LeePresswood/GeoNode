@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,19 +44,24 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 			@Override
 			public void stateChanged()
 			{//If the response is anything but 1, we have not logged in properly.
-				int code = new CodeResponseSplitter(dbm.resultString).code;
-				if(code == ErrorCodesFromWeb.SUCCESS)
-				{//Logged in successfully. Go to home page for that person.
-					/*Intent i = new Intent(holder, MapsActivity.class);
+				CodeResponseSplitter crs =  new CodeResponseSplitter(dbm.resultString);
+				int code = crs.code;
+				String response = crs.response;
+				switch(code)
+				{
+					case ErrorCodesFromWeb.SUCCESS:
 
-					//Pass in the username for the session
-					i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
-					startActivity(i);*/
+						break;
+					case ErrorCodesFromWeb.DB_INSERT_ERROR: //Database error
+						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						break;
+					case ErrorCodesFromWeb.DEBUG_ERROR: //Admin debug error. See web response.
+						Toast.makeText(holder.getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						break;
+					default:
+						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
+						break;
 				}
-				/*else
-					//Improper login. Ask again
-					Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_SHORT).show();
-				*/
 			}
 		});
 	}
@@ -85,7 +91,7 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

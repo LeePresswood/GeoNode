@@ -32,7 +32,7 @@ public class LoginActivity extends ActionBarActivity implements DatabaseActivity
 	public void databaseInit()
 	{
 		//This listener fires when the result is ready
-		final LoginActivity loginHolder = this;
+		final LoginActivity holder = this;
 		dbm = new DBManager(this.getApplicationContext(), new ChangeListener()
 		{
 			@Override
@@ -47,31 +47,31 @@ public class LoginActivity extends ActionBarActivity implements DatabaseActivity
 						//Queried successfully. Determine if the login was successful.
 						if(Boolean.parseBoolean(response))
 						{//Person found.
-							Intent i = new Intent(loginHolder, MapsActivity.class);
+							Intent i = new Intent(holder, MapsActivity.class);
 
 							//Pass the username for the session
-							i.putExtra("username", ((EditText) loginHolder.findViewById(R.id.textfield_username)).getText().toString());
+							i.putExtra("username", ((EditText) holder.findViewById(R.id.textfield_username)).getText().toString());
 							startActivity(i);
 						}
 						else
 						{//Person not found or password incorrect. Clear password field
-							((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
-							Toast.makeText(loginHolder.getApplicationContext(), "Error: Username-Password pair not found.", Toast.LENGTH_LONG).show();
+							((EditText) holder.findViewById(R.id.textfield_password)).setText("");
+							Toast.makeText(holder.getApplicationContext(), "Error: Username-Password pair not found.", Toast.LENGTH_LONG).show();
 						}
 						break;
 					case ErrorCodesFromWeb.INVALID_CHAR_FOUND: //Bad character found
 						//Delete both username and password and tell user.
-						((EditText) loginHolder.findViewById(R.id.textfield_username)).setText("");
-						((EditText) loginHolder.findViewById(R.id.textfield_password)).setText("");
+						((EditText) holder.findViewById(R.id.textfield_username)).setText("");
+						((EditText) holder.findViewById(R.id.textfield_password)).setText("");
 					case ErrorCodesFromWeb.POST_NOT_SET: //Must submit something for both fields
 					case ErrorCodesFromWeb.DB_SELECT_ERROR: //Database error
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
 					case ErrorCodesFromWeb.DEBUG_ERROR: //Admin debug error. See web response.
-						Toast.makeText(loginHolder.getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), response, Toast.LENGTH_LONG).show();
 						break;
 					default:
-						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
+						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
 						break;
 				}
 			}
