@@ -1,9 +1,6 @@
 package com.leepresswood.geonode.activities;
 
-import android.content.Context;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -18,14 +15,14 @@ import com.leepresswood.geonode.db.ChangeListener;
 import com.leepresswood.geonode.db.CodeResponseSplitter;
 import com.leepresswood.geonode.db.DBManager;
 import com.leepresswood.geonode.db.ErrorCodesFromWeb;
+import com.leepresswood.geonode.location.GeoLocationManager;
 
 public class MapsActivity extends ActionBarActivity implements DatabaseActivityInterface
 {
 	private DBManager dbm;
 	private GoogleMap map;
 
-	private LocationManager locationManager;
-	private String provider;
+	private GeoLocationManager locationManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +71,10 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		map.setBuildingsEnabled(false);
 
 		//Get the location manager
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		locationManager = new GeoLocationManager(this);
+		Location location = locationManager.getLocation();
 
-		//Set the starting location
-		Criteria criteria = new Criteria();
-		provider = locationManager.getBestProvider(criteria, false);
-		Location location = locationManager.getLastKnownLocation(provider);
+		//Move if we have a location
 		if (location != null)
 		{
 			LatLng startLocation = new LatLng(location.getLatitude(), location.getLongitude());
