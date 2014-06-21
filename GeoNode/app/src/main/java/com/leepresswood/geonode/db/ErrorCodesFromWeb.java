@@ -8,6 +8,7 @@ public class ErrorCodesFromWeb
 	public static final int DB_INSERT_ERROR = 3;
 	public static final int DB_SELECT_ERROR = 4;
 	public static final int DB_DELETE_ERROR = 5;
+	public static final int DEBUG_ERROR = 6;
 
 	public static String getErrorText(int errorNum)
 	{
@@ -25,6 +26,8 @@ public class ErrorCodesFromWeb
 				return "Database select error.";
 			case DB_DELETE_ERROR:
 				return "Database delete error.";
+			case DEBUG_ERROR:
+				return "Admin only.";
 			default:
 				return getErrorText(SUCCESS);
 		}

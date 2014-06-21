@@ -67,6 +67,9 @@ public class LoginActivity extends ActionBarActivity implements DatabaseActivity
 					case ErrorCodesFromWeb.DB_SELECT_ERROR: //Database error
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
+					case ErrorCodesFromWeb.DEBUG_ERROR: //Admin debug error. See web response.
+						Toast.makeText(loginHolder.getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						break;
 					default:
 						Toast.makeText(loginHolder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
 						break;
