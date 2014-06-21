@@ -84,6 +84,11 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		map.setIndoorEnabled(false);
 		map.setBuildingsEnabled(false);
 
+		this.moveMapToCurrentLocation();
+	}
+
+	private void moveMapToCurrentLocation()
+	{
 		//Get the location manager
 		locationManager = new GeoLocationManager(this);
 		Location location = locationManager.getLocation();

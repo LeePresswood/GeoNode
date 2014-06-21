@@ -24,7 +24,6 @@ public class GeoLocationManager implements LocationListener
 		//Set the starting location
 		provider = locationManager.getBestProvider(new Criteria(), false);
 		location = locationManager.getLastKnownLocation(provider);
-
 	}
 
 	public Location getLocation()
@@ -35,7 +34,7 @@ public class GeoLocationManager implements LocationListener
 	@Override
 	public void onLocationChanged(Location location)
 	{
-
+		this.location = location;
 	}
 
 	@Override
