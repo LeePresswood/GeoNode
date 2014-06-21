@@ -20,5 +20,6 @@
 		 android:text="@string/button_place_node"
 		 style="@style/ButtonStyle"
 		 android:id="@+id/button"
-		 android:layout_gravity="bottom"/>
+		 android:layout_gravity="bottom"
+		 android:onClick="setNode"/>
 </LinearLayout>

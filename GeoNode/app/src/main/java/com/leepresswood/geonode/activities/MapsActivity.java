@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -57,7 +58,7 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 				switch(code)
 				{
 					case ErrorCodesFromWeb.SUCCESS:
-
+						Toast.makeText(holder.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 						break;
 					case ErrorCodesFromWeb.DB_INSERT_ERROR: //Database error
 						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
@@ -109,5 +110,11 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
+	}
+
+	public void setNode(View view)
+	{//Set node at current location
+		String url = this.getString(R.string.db_map_url);
+		dbm.connect(url, false, "username", username, "latitude", String.valueOf(locationManager.getLocation().getLatitude()), "longitude", String.valueOf(locationManager.getLocation().getLongitude()));
 	}
 }
