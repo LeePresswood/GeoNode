@@ -38,6 +38,7 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		Bundle extras = getIntent().getExtras();
 		if(extras != null)
 			this.username = extras.getString("username");
+		Toast.makeText(this.getApplicationContext(), "Welcome back, " + this.username + "!", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 		if (location != null)
 		{
 			LatLng startLocation = new LatLng(location.getLatitude(), location.getLongitude());
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 17));
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 16));
 		}
 	}
 
