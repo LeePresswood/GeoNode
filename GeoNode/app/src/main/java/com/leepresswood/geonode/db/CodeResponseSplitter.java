@@ -9,6 +9,6 @@ public class CodeResponseSplitter
 	{//The number in front of the colon is the error code. Behind is the server message.
 		int colonNum = returnString.indexOf(":");
 		code = Integer.parseInt(returnString.substring(0, colonNum));
-		response = returnString.substring(colonNum);
+		response = returnString.substring(colonNum + 1);
 	}
 }

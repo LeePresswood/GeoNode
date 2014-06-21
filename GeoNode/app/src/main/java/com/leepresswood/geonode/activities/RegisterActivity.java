@@ -68,6 +68,9 @@ public class RegisterActivity extends Activity implements DatabaseActivityInterf
 						//Database error
 						Toast.makeText(holder.getApplicationContext(), "Error: " + new ErrorCodesFromWeb().getErrorText(code), Toast.LENGTH_LONG).show();
 						break;
+					case ErrorCodesFromWeb.DEBUG_ERROR: //Admin debug error. See web response.
+						Toast.makeText(holder.getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						break;
 					default:
 						Toast.makeText(holder.getApplicationContext(), "Error: Issue unknown.", Toast.LENGTH_LONG).show();
 						break;
