@@ -22,8 +22,9 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 {
 	private DBManager dbm;
 	private GoogleMap map;
-
 	private GeoLocationManager locationManager;
+
+	private String username = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,11 @@ public class MapsActivity extends ActionBarActivity implements DatabaseActivityI
 
 		this.databaseInit();
 		this.setUpMap();
+
+		//Get the username
+		Bundle extras = getIntent().getExtras();
+		if(extras != null)
+			this.username = extras.getString("username");
 	}
 
 	@Override
