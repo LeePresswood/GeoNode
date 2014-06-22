@@ -14,7 +14,6 @@ import android.os.Bundle;
 
 public class GeoLocationManager implements LocationListener
 {
-	private String provider;
 	private Location location = null;
 
 	public GeoLocationManager(Activity a)
@@ -22,7 +21,7 @@ public class GeoLocationManager implements LocationListener
 		LocationManager locationManager = (LocationManager) a.getSystemService(Context.LOCATION_SERVICE);
 
 		//Set the starting location
-		provider = locationManager.getBestProvider(new Criteria(), false);
+		String provider = locationManager.getBestProvider(new Criteria(), false);
 		location = locationManager.getLastKnownLocation(provider);
 	}
 
