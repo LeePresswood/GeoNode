@@ -18,9 +18,9 @@
 	<string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyCPKuaystCmVDidpVYkrTH4q6_6Z5vwwUA</string>
 
     <!-- Web Services -->
-    <string name="db_login_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/login.php</string>
-    <string name="db_register_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/register.php</string>
-    <string name="db_map_url">http://babbage.cs.missouri.edu/~lmp6yb/GeoNode/map.php</string>
+    <string name="db_login_url">http://162.243.254.68/GeoNode/app/login.php</string>
+    <string name="db_register_url">http://162.243.254.68/GeoNode/app/register.php</string>
+    <string name="db_map_url">http://162.243.254.68/GeoNode/app/map.php</string>
 
     <!-- Debug strings -->
     <string name="debug_enter">Admin</string>
